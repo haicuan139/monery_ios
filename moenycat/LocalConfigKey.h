@@ -18,6 +18,7 @@
 #define CONFIG_KEY_DUIHUAN_NAME     @"_duihuan_name"//兑换名字
 #define CONFIG_KEY_DUIHUAN_ADDR     @"_duihuan_addr"//兑换地址
 #define CONFIG_KEY_DUIHUAN_PHONE    @"_duihuan_phone"//兑换手机号码
+#define CONFIG_KEY_DUIHUAN_QQ       @"_duihuan_qq"//对话QQ号码
 #define CONFIG_KEY_DUIHUAN_COUNT    @"_duihuan_count"//兑换数量
 #define CONFIG_KEY_BIND_SAFE_NUMBER      @"_safe_number"//身份证号码
 #define CONFIG_KEY_BIND_SAFE_NAME        @"_safe_name"//安全信息姓名

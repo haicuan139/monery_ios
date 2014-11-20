@@ -19,5 +19,6 @@
 @property (retain, nonatomic) EMDelegateClass *delegateClass;
 - (IBAction)postDuihuan:(id)sender;
 - (void)valueChanged:(UIStepper *)Stepper;
+@property (retain, nonatomic) IBOutlet UITextField *duihuanQQ;
 
 @end

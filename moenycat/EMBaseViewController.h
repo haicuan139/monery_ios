@@ -26,7 +26,6 @@
 #import "UIAlertView+Block.h"
 #import "FVCustomAlertView/FVCustomAlertView.h"
 #import "EDColor.h"
-#import "UIViewController+CWStatusBarNotification.h"
 @interface EMBaseViewController : UIViewController <WXApiDelegate , UMSocialUIDelegate,UIAlertViewDelegate,EAIntroDelegate,ASIHTTPRequestDelegate>
 @property (nonatomic , retain) NSUserDefaults* userDef;
 @property (nonatomic , retain) EMMyInfoTitleView* headerView;

@@ -74,13 +74,20 @@
 -(void)onItemClickNSIndexPath:(NSIndexPath *)indexPath{
     //点击事件
      if ([self getBoolValueForKey:CONFIG_KEY_BIND_FLG]) {
-        int balance = [self getIntegerValueForKey:CONFIG_KEY_LOCAL_BALANCE];
+        NSInteger balance = [self getIntegerValueForKey:CONFIG_KEY_LOCAL_BALANCE];
         if ((balance / 100) < 1) {
             [FVCustomAlertView showDefaultWarningAlertOnView:self.view withTitle:@"余额不足!"];
         } else {
             EMAppDelegate *dele = [[UIApplication sharedApplication]delegate];
-            int  section = [indexPath section];
+            NSInteger  section = [indexPath section];
             NSDictionary *dic = [_tixianArray objectAtIndex:section];
+            NSInteger num = [[dic objectForKey:@"pnum"] integerValue];
+            if (num == 0) {
+                //提现数量不够
+                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"本月的提现数量已经用完了哦!" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+                [alert show];
+                return;
+            }
             dele.tixianId = [dic objectForKey:@"pid"];
             [self pushViewControllerWithStorboardName:@"tixian_input" sid:@"tixian_input" hiddenTabBar:YES];
         }
@@ -96,7 +103,7 @@
      }
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    int  section = [indexPath section];
+    NSInteger  section = [indexPath section];
         static NSString *CellIdentifier = @"EMTixianCell";
     EMTixianCell *cell = (EMTixianCell *)[_tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {

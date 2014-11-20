@@ -87,7 +87,6 @@
 		2242D94D1A147A3400EA7395 /* EMMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2242D94C1A147A3400EA7395 /* EMMessageCell.xib */; };
 		2242D94F1A14916F00EA7395 /* feedback.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2242D94E1A14916F00EA7395 /* feedback.storyboard */; };
 		2242D9521A1492F200EA7395 /* EMFeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2242D9511A1492F200EA7395 /* EMFeedBackViewController.m */; };
-		2242D95A1A14BA3500EA7395 /* UIViewController+CWStatusBarNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 2242D9591A14BA3500EA7395 /* UIViewController+CWStatusBarNotification.m */; };
 		2242D95E1A14C00000EA7395 /* MPNotificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2242D95D1A14C00000EA7395 /* MPNotificationView.m */; };
 		2242D9611A14C0A600EA7395 /* OBGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2242D9601A14C0A600EA7395 /* OBGradientView.m */; };
 		2249AF2519AAD9A1001A679A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2249AF2419AAD9A1001A679A /* Foundation.framework */; };
@@ -419,8 +418,6 @@
 		2242D94E1A14916F00EA7395 /* feedback.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = feedback.storyboard; sourceTree = "<group>"; };
 		2242D9501A1492F200EA7395 /* EMFeedBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMFeedBackViewController.h; sourceTree = "<group>"; };
 		2242D9511A1492F200EA7395 /* EMFeedBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMFeedBackViewController.m; sourceTree = "<group>"; };
-		2242D9581A14BA3500EA7395 /* UIViewController+CWStatusBarNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+CWStatusBarNotification.h"; path = "../../../../Desktop/IOS开源库/CWStatusBarNotification-master/CWStatusBarNotification/UIViewController+CWStatusBarNotification.h"; sourceTree = "<group>"; };
-		2242D9591A14BA3500EA7395 /* UIViewController+CWStatusBarNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+CWStatusBarNotification.m"; path = "../../../../Desktop/IOS开源库/CWStatusBarNotification-master/CWStatusBarNotification/UIViewController+CWStatusBarNotification.m"; sourceTree = "<group>"; };
 		2242D95C1A14C00000EA7395 /* MPNotificationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPNotificationView.h; sourceTree = "<group>"; };
 		2242D95D1A14C00000EA7395 /* MPNotificationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPNotificationView.m; sourceTree = "<group>"; };
 		2242D95F1A14C0A600EA7395 /* OBGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBGradientView.h; sourceTree = "<group>"; };
@@ -810,7 +807,6 @@
 			isa = PBXGroup;
 			children = (
 				2242D95B1A14BFEB00EA7395 /* notificationview_1 */,
-				2242D9571A14BA2400EA7395 /* notificationview */,
 				22F5FF971A11F7B600BA8E4A /* TextField */,
 				22F88E5D1A10841900AF4CC1 /* webviewcalljs */,
 				22EBF1911A0CE60B00BF6740 /* progressdialog */,
@@ -944,15 +940,6 @@
 				22352F611A0A002A00C5E408 /* EAIntroView.m */,
 			);
 			path = EAIntroView;
-			sourceTree = "<group>";
-		};
-		2242D9571A14BA2400EA7395 /* notificationview */ = {
-			isa = PBXGroup;
-			children = (
-				2242D9581A14BA3500EA7395 /* UIViewController+CWStatusBarNotification.h */,
-				2242D9591A14BA3500EA7395 /* UIViewController+CWStatusBarNotification.m */,
-			);
-			name = notificationview;
 			sourceTree = "<group>";
 		};
 		2242D95B1A14BFEB00EA7395 /* notificationview_1 */ = {
@@ -1812,7 +1799,6 @@
 				228FC2C219BC523F00B47BB6 /* EMTiXianTableViewController.m in Sources */,
 				226914F819E66D6100386888 /* EMHomeViewController_v2.m in Sources */,
 				228FC2C519BC524D00B47BB6 /* EMDuiHuanTableViewController.m in Sources */,
-				2242D95A1A14BA3500EA7395 /* UIViewController+CWStatusBarNotification.m in Sources */,
 				2217FCA319AC5C5E0054609F /* ASIInputStream.m in Sources */,
 				22F88E631A10844400AF4CC1 /* WebViewJavascriptBridge.m in Sources */,
 				22352F7F1A0A099400C5E408 /* EMWelcomeViewController.m in Sources */,

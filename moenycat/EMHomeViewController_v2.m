@@ -174,18 +174,19 @@
         cell.selectedBackgroundView.backgroundColor=color;
 
         if(_adListArray.count > 0 ){
-            int position = indexPath.row;
+            NSInteger position = indexPath.row;
             NSDictionary *dic = [_adListArray objectAtIndex:position - 1];
 
             NSURL *imageUrl = [NSURL URLWithString:[dic objectForKey:@"adIcon"]];
             [cell.adIconImageView setImageWithURL:imageUrl placeholderImage:[UIImage imageNamed:@"logo.png"]];
             NSString *title = [dic objectForKey:@"adTitle"];
-            NSString *balance = [dic objectForKey:@"adAwardBalance"];
-            NSString *balanceText = [[NSString alloc] initWithFormat:@"剩余:%@喵币",balance];
+//            NSString *balance = [dic objectForKey:@"adAwardBalance"];
+//            NSString *balanceText = [[NSString alloc] initWithFormat:@"剩余:%@喵币",balance];
             NSString *content = [dic objectForKey:@"adContent"];
+            NSString *ad_des = [dic objectForKey:@"ad_desc"];
             [cell.adContentLable setText:content];
             [cell.adTitleLable setText:title];
-            [cell.adBalanceLable setTitle:balanceText forState:UIControlStateNormal];
+            [cell.adBalanceLable setTitle:ad_des forState:UIControlStateNormal];
             
         }
 
@@ -313,5 +314,6 @@
     [_pageControl release];
     [_odRefreshView release];
     [_adLoopListArray release];
+    [_emclass release];
 }
 @end

@@ -31,7 +31,7 @@
     _duihuanCountControllerButton.minimumValue = 1;
     EMAppDelegate *app = [[UIApplication sharedApplication] delegate];
     NSDictionary *dic = app.duihuanDic;
-        int maxValue = [[dic objectForKey:@"p_max_dh_num"] integerValue];
+        NSInteger maxValue = [[dic objectForKey:@"p_max_dh_num"] integerValue];
 
     _duihuanCountControllerButton.tag = [[dic objectForKey:@"pprice"] integerValue] ;
     _duihuanCountControllerButton.maximumValue = maxValue;
@@ -42,8 +42,8 @@
     _delegateClass.delegate = self;
 }
 - (void)valueChanged:(UIStepper *)Stepper{
-    int balance = [self getIntegerValueForKey:CONFIG_KEY_LOCAL_BALANCE];
-    int price = Stepper.tag;
+    NSInteger balance = [self getIntegerValueForKey:CONFIG_KEY_LOCAL_BALANCE];
+    NSInteger price = Stepper.tag;
     NSLog(@"点击了!%f",Stepper.value);
     if ((Stepper.value * price) < balance) {
         NSString *value = [[NSString alloc]initWithFormat:@"%d",(int)Stepper.value];
@@ -71,6 +71,7 @@
     [_duihuanCount release];
     [_duihuanCountControllerButton release];
     [_duihuanCommit release];
+    [_duihuanQQ release];
     [super dealloc];
 }
 - (IBAction)postDuihuan:(id)sender {
@@ -80,10 +81,12 @@
     NSString *addr = _duihanAddress.text;
     NSString *phone = _duihuanPhone.text;
     NSString *name = _duihuanName.text;
+    NSString *qq = _duihuanQQ.text;
     [self setStringValueForKey:CONFIG_KEY_DUIHUAN_ADDR val:addr];
     [self setStringValueForKey:CONFIG_KEY_DUIHUAN_PHONE val:phone];
     [self setStringValueForKey:CONFIG_KEY_DUIHUAN_NAME val:name];
     [self setStringValueForKey:CONFIG_KEY_DUIHUAN_COUNT val:_duihuanCount.text];
+    [self setStringValueForKey:CONFIG_KEY_DUIHUAN_QQ val:qq];
     //申请兑换
     [_delegateClass EMDelegatePostDuiHuanInfo];
 }

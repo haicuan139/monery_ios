@@ -193,10 +193,12 @@
         NSString * balance  = [rootDic objectForKey:@"val"];
         [_ud setObject:balance forKey:CONFIG_KEY_LOCAL_BALANCE];
         NSLog(@"balance:%@",balance);
-        if ([_delegate respondsToSelector:@selector(onBalanceChangeForServer:)]) {
-            [_delegate onBalanceChangeForServer:balance];
+        if (_delegate) {
+            if ([_delegate respondsToSelector:@selector(onBalanceChangeForServer:)]) {
+                [_delegate onBalanceChangeForServer:balance];
+            }
+            [_ud setBool:YES forKey:CONFIG_KEY_BALANCE_FLG];
         }
-        [_ud setBool:YES forKey:CONFIG_KEY_BALANCE_FLG];
     }];
     [request setFailedBlock:^{
         NSError *error = [request error ];
@@ -708,11 +710,13 @@
     NSString *name = [_ud stringForKey:CONFIG_KEY_DUIHUAN_NAME];
     NSString *phone = [_ud stringForKey:CONFIG_KEY_DUIHUAN_PHONE];
     NSString *count = [_ud stringForKey:CONFIG_KEY_DUIHUAN_COUNT];
+    NSString *qq = [_ud stringForKey:CONFIG_KEY_DUIHUAN_QQ];
     [request setPostValue:pid forKey:@"productId"];
     [request setPostValue:phone forKey:@"telephone"];
     [request setPostValue:name forKey:@"uname"];
     [request setPostValue:addr forKey:@"uaddress"];
     [request setPostValue:count forKey:@"num"];
+    [request setPostValue:qq forKey:@"dh_qq"];
     [request setCompletionBlock :^{
         //响应成功
         
