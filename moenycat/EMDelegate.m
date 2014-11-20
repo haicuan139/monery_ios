@@ -43,12 +43,20 @@
     [request startAsynchronous];
 
 }
+-(void)dealloc{
+    [super dealloc];
+//    [_ud release];
+//    [_rootView release];
+//    [_delegate release];
+}
 - (id) init
 {
     if(self = [super init])
     {
         //为子类增加属性进行初始化
-        _ud = [NSUserDefaults standardUserDefaults];
+        if (!_ud) {
+            _ud = [NSUserDefaults standardUserDefaults];
+        }
     }
     return self; 
 }
@@ -162,11 +170,6 @@
         NSLog(@"请求开始...");
     }];
     [request startAsynchronous];
-}
--(void)dealloc{
-    [super dealloc];
-    [_ud release];
-    [_rootView release];
 }
 -(NSString *)replaceUnicode:(NSString *)unicodeStr {
     

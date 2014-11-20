@@ -31,20 +31,19 @@
     [_nickNameLable setText:nickName];
     [_telPhoneLable setText:tel];
     NSLog(@"加载个人信息的回掉执行!");
-    
 }
 
 -(void)onBalanceChangeForServer:(NSString *)balance{
 
     double r = [balance floatValue] / 100;
-    NSString *rmb = [[NSString alloc]initWithFormat:@"余额:%d喵币(%0.2f元)",[balance integerValue],r];
+    NSString *rmb = [[NSString alloc]initWithFormat:@"余额:%ld喵币(%0.2f元)",(long)[balance integerValue],r];
     [_balanceLable setText:rmb];
 }
 -(void)initInfo{
-    EMDelegateClass *delegate = [[EMDelegateClass alloc] init];
-    delegate.delegate = self;
-    [delegate EMDelegateInitMyInfo];
-    [delegate EMDelegateInitBalanceForServer];
+    _delegateClass = [[EMDelegateClass alloc] init];
+    _delegateClass.delegate = self;
+    [_delegateClass EMDelegateInitMyInfo];
+    [_delegateClass EMDelegateInitBalanceForServer];
 }
 - (void)awakeFromNib
 {
@@ -64,6 +63,7 @@
     [_nickNameLable release];
     [_telPhoneLable release];
     [_balanceLable release];
+    [_delegateClass release];
     [super dealloc];
 }
 @end

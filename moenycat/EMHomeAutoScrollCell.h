@@ -17,5 +17,6 @@
 @property (retain, nonatomic) IBOutlet UILabel *nickNameLable;
 @property (retain, nonatomic) IBOutlet UILabel *telPhoneLable;
 @property (retain, nonatomic) IBOutlet UILabel *balanceLable;
+@property (retain, nonatomic) EMDelegateClass *delegateClass;
 -(void)initInfo;
 @end
