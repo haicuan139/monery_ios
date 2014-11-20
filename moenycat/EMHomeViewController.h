@@ -14,7 +14,7 @@
     int autoScrollViewH;
     int tabCellHeight;
 
-}
+} 
 
 @property (nonatomic) int tableViewOffest;
 @property (nonatomic , retain) CycleScrollView *mainScorllView;

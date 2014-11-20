@@ -78,7 +78,7 @@
         NSString *title = [dic objectForKey:@"dhPname"];
         NSString *name = [dic objectForKey:@"dhUname"];
         NSString *addr = [dic objectForKey:@"dhAddress"];
-        int state = [[dic objectForKey:@"dhStatus"] integerValue];
+        NSInteger state = [[dic objectForKey:@"dhStatus"] integerValue];
         if (state == 0) {
             [cell.duihuanStates setText:@"审核中"];
             [cell.duihuanStates setTextColor:[UIColor orangeColor]];

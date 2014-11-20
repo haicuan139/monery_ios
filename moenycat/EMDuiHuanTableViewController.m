@@ -109,13 +109,13 @@
     
 }
 -(void)onItemClickNSIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"当前Index %d",indexPath.row);
+    NSLog(@"当前Index %ld",(long)indexPath.row);
     //如果绑定过
     if ([self getBoolValueForKey:CONFIG_KEY_BIND_FLG]) {
         //如果余额充足
         NSDictionary *pd = [_duihuanArray objectAtIndex:indexPath.row];
-        int price = [[pd objectForKey:@"pprice"] integerValue];
-        int balance = [self getIntegerValueForKey:CONFIG_KEY_LOCAL_BALANCE];
+        NSInteger price = [[pd objectForKey:@"pprice"] integerValue];
+        NSInteger balance = [self getIntegerValueForKey:CONFIG_KEY_LOCAL_BALANCE];
         if (balance >= price) {
             EMAppDelegate *del = [[UIApplication sharedApplication] delegate];
             del.duihuanDic = pd;

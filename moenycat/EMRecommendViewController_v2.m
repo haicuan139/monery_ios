@@ -53,7 +53,7 @@
 -(void)onInitTaskListForServer:(NSArray *)taskList{
         [_tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
     [_taskListArray removeAllObjects];
-        NSLog(@"当前数组数量任务列表:%d",taskList.count);
+        NSLog(@"当前数组数量任务列表:%lu",(unsigned long)taskList.count);
     for (int i = 0; i < taskList.count; i++) {
         [_taskListArray addObject:[taskList objectAtIndex:i]];
     }
@@ -63,7 +63,7 @@
 #pragma mark - 初始化焦点图列表
 -(void)onInitTaskLoopListForServer:(NSArray *)loopList{
         [_tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
-    NSLog(@"当前数组数量焦点图列表:%d",loopList.count);
+    NSLog(@"当前数组数量焦点图列表:%lu",(unsigned long)loopList.count);
     [_viewsArray removeAllObjects];
     [_taskLoopListArray removeAllObjects];
     for (int i = 0; i < loopList.count; i++) {
@@ -158,7 +158,7 @@
             UIImage *image = [UIImage imageNamed:@"logo.png"];
             [cell.taskIcon setImage:image];
         if (_taskListArray.count > 0 ) {
-            int position = indexPath.row;
+            NSInteger position = indexPath.row;
             NSDictionary *dic = [_taskListArray objectAtIndex:position - 1];
             NSString *title = [dic objectForKey:@"adTitle"];
             [cell.tableTitle setText:title];

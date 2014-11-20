@@ -51,8 +51,8 @@
 -(void)onItemClickNSIndexPath:(NSIndexPath *)indexPath{
     
 
-    int index = [indexPath row];
-    int section = [indexPath section];
+    NSInteger index = [indexPath row];
+    NSInteger section = [indexPath section];
     if (section == 0) {
         if (index == 0) {
             //安全信息
@@ -88,8 +88,8 @@
     }
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    int index = [indexPath row];
-    int indexSection = [indexPath section];
+    NSInteger index = [indexPath row];
+    NSInteger indexSection = [indexPath section];
     static NSString *CellIdentifier = @"EMMoreItemCell";
     EMMoreItemCell *cell = (EMMoreItemCell *)[_moreTableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if(cell == nil){

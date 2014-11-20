@@ -76,12 +76,12 @@
         [_ud setObject:[val objectForKey:CONFIG_KEY_INFO_PHONE] forKey:CONFIG_KEY_INFO_PHONE];
         [_ud setObject:[val objectForKey:CONFIG_KEY_INFO_HEADER_URL] forKey:CONFIG_KEY_INFO_HEADER_URL];
         [_ud setObject:[val objectForKey:CONFIG_KEY_INFO_ADDRESS] forKey:CONFIG_KEY_INFO_ADDRESS];
-        int age = [[val objectForKey:CONFIG_KEY_INFO_AGE] integerValue];
+        NSInteger age = [[val objectForKey:CONFIG_KEY_INFO_AGE] integerValue];
         if (age == 0) {
             age = 19;
         }
         
-        NSString *ageStr  =  [[NSString alloc]initWithFormat:@"%d",age];
+        NSString *ageStr  =  [[NSString alloc]initWithFormat:@"%ld",(long)age];
         [_ud setObject:ageStr forKey:CONFIG_KEY_INFO_AGE];
         [_ud setObject:[val objectForKey:CONFIG_KEY_INFO_RECOMMEND_CODE] forKey:CONFIG_KEY_INFO_RECOMMEND_CODE];
         NSString *genderStr = [val objectForKey:CONFIG_KEY_INFO_GENDER];
@@ -89,10 +89,12 @@
             genderStr = @"男";
         }
         [_ud setObject:genderStr forKey:CONFIG_KEY_INFO_GENDER];
-        if ([_delegate respondsToSelector:@selector(onMyInfoInitDone:)]) {
-            [_delegate onMyInfoInitDone:val];
+        if (_delegate) {            
+            if ([_delegate respondsToSelector:@selector(onMyInfoInitDone:)]) {
+                [_delegate onMyInfoInitDone:val];
+            }
+            [_ud setBool:YES forKey:CONFIG_KEY_INIMYINFO];
         }
-        [_ud setBool:YES forKey:CONFIG_KEY_INIMYINFO];
     }];
     [request setFailedBlock:^{
         NSError *error = [request error ];

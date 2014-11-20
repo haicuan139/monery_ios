@@ -84,9 +84,9 @@
     cell.selectedBackgroundView=[[[UIView alloc]initWithFrame:cell.frame]autorelease];
     cell.selectedBackgroundView.backgroundColor=color;
     if(_adlistArray.count > 0 ){
-        int position = indexPath.row;
+        NSInteger position = indexPath.row;
         NSDictionary *dic = [_adlistArray objectAtIndex:position];
-        NSLog(@"当前position:%d",position);
+        NSLog(@"当前position:%ld",(long)position);
         NSURL *imageUrl = [NSURL URLWithString:[dic objectForKey:@"adIcon"]];
         [cell.adIconImageView setImageWithURL:imageUrl placeholderImage:[UIImage imageNamed:@"logo.png"]];
         NSString *title = [dic objectForKey:@"adTitle"];

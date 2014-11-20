@@ -146,7 +146,7 @@
 - (void)textFieldDidChange:(UITextField *)textField{
     EMAppDelegate *de = [[UIApplication sharedApplication] delegate];
     NSString *type = de.editViewType;
-    int length = 0;
+    int length = 0; 
     if ([type isEqualToString:CONFIG_KEY_INFO_NICKNAME]) {
         //昵称
         length = 6;

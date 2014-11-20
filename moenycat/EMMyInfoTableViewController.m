@@ -139,7 +139,7 @@
 - (CGFloat)tableView:(UITableView *)atableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     int cellH = 43;
-    int index = [indexPath section];
+    NSInteger index = [indexPath section];
     if (index == 0) {
         cellH = 80;
     }else if (index == 1){
@@ -154,8 +154,8 @@
     
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    int index = [indexPath row];
-    int section = [indexPath section];
+    NSInteger index = [indexPath row];
+    NSInteger section = [indexPath section];
     static NSString *CellIdentifier = @"EMMyInfoHeaderIconCell";
     EMMyInfoHeaderIconCell *cell = (EMMyInfoHeaderIconCell *)[_tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if(cell == nil){
@@ -188,8 +188,8 @@
 
     if (section == 1) {
      //余额分组
-        int intBalance = [[self getStringValueForKey:CONFIG_KEY_LOCAL_BALANCE] integerValue];
-        NSString *balance = [[NSString alloc]initWithFormat:@"%d喵币",intBalance];
+        NSInteger intBalance = [[self getStringValueForKey:CONFIG_KEY_LOCAL_BALANCE] integerValue];
+        NSString *balance = [[NSString alloc]initWithFormat:@"%ld喵币",(long)intBalance];
         cell_1.itemLable.text = @"余额";
         cell_1.itemContent.text = balance;
     } else if (section == 2){
@@ -210,8 +210,8 @@
 -(void)onItemClickNSIndexPath:(NSIndexPath *)indexPath{
     EMAppDelegate *app = [[UIApplication sharedApplication] delegate];
     //条目点击事件
-    int index = [indexPath row];
-    int section = [indexPath section];
+    NSInteger index = [indexPath row];
+    NSInteger section = [indexPath section];
     if (section == 0) {
                     [self startOutAnimation];
         NSLog(@"头像选择");
@@ -560,7 +560,7 @@
 }
 
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
-    NSLog(@"当前:%d",row);
+    NSLog(@"当前:%ld",(long)row);
     return [ageArray objectAtIndex:row];
 }
 -(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{

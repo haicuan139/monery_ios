@@ -55,8 +55,8 @@
 - (CGFloat)tableView:(UITableView *)atableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     int cellH = 0;
-    int index = [indexPath section];
-    NSLog(@"index:%d",index);
+    NSInteger index = [indexPath section];
+    NSLog(@"index:%ld",(long)index);
     if (index == 0) {
         cellH = 80;
     }else if (index == 1){
@@ -71,8 +71,8 @@
     
 }
 -(void)onItemClickNSIndexPath:(NSIndexPath *)indexPath{
-    int  index =  [indexPath row];
-    int  section = [indexPath section];
+    NSInteger  index =  [indexPath row];
+    NSInteger  section = [indexPath section];
     if (section == 0) {
         if (index == 0) {
             //跳转我的个人信息
@@ -134,8 +134,8 @@
 
     NSString* imageName = @"";
     NSString* lableText = @"";
-        int index = [indexPath row];
-    int indexSection = [indexPath section];
+        NSInteger index = [indexPath row];
+    NSInteger indexSection = [indexPath section];
     if (index == 0) {
         imageName = @"wodeguanggao.png";
         lableText = @"我的广告";

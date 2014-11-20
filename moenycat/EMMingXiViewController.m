@@ -48,7 +48,7 @@
     UIColor* color=[EMColorHex getColorWithHexString:@"#FDB2B2"];
     cell.selectedBackgroundView=[[[UIView alloc]initWithFrame:cell.frame]autorelease];
     cell.selectedBackgroundView.backgroundColor = color;
-    int index = [indexPath row];
+    NSInteger index = [indexPath row];
     if (_mingxiArray.count > 0) {
         NSDictionary *dic = [_mingxiArray objectAtIndex:index];
         NSString *title = [dic objectForKey:@"trRemark"];
@@ -56,7 +56,7 @@
         NSDecimalNumber *balance = [dic objectForKey:@"trBalance"];
         NSDecimalNumber *amount = [dic objectForKey:@"trAmount"];
 
-        int type = [[dic objectForKey:@"trInOrOut"]integerValue];
+        NSInteger type = [[dic objectForKey:@"trInOrOut"]integerValue];
         [cell.typeLable setText:title];
         [cell.timeLable setText:time];
         NSString *balanceStr = [@"余额:" stringByAppendingString:[balance stringValue]];
