@@ -9,16 +9,16 @@
 #import "EMBaseViewController.h"
 #import "EDColor.h"
 #import "EMAppDelegate.h"
-@interface EMDuihuanInputInfoViewController : EMBaseViewController <EMDelegate>
+@interface EMDuihuanInputInfoViewController : UIViewController <EMDelegate>
 @property (retain, nonatomic) IBOutlet UITextField *duihuanName;
 @property (retain, nonatomic) IBOutlet UITextField *duihuanPhone;
 @property (retain, nonatomic) IBOutlet UITextField *duihanAddress;
 @property (retain, nonatomic) IBOutlet UITextField *duihuanCount;
 @property (retain, nonatomic) IBOutlet UIStepper *duihuanCountControllerButton;
+@property (retain, nonatomic) NSUserDefaults *ud;
 @property (retain, nonatomic) IBOutlet UIButton *duihuanCommit;
 @property (retain, nonatomic) EMDelegateClass *delegateClass;
 - (IBAction)postDuihuan:(id)sender;
 - (void)valueChanged:(UIStepper *)Stepper;
-@property (retain, nonatomic) IBOutlet UITextField *duihuanQQ;
 
 @end

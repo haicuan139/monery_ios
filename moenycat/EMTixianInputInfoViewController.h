@@ -8,12 +8,13 @@
 
 #import "EMBaseViewController.h"
 #import "EDColor.h"
-@interface EMTixianInputInfoViewController : EMBaseViewController <EMDelegate>
+@interface EMTixianInputInfoViewController : UIViewController <EMDelegate>
 @property (retain, nonatomic) IBOutlet UITextField *tixianName;
 @property (retain, nonatomic) IBOutlet UITextField *tixianBankNumber;
 @property (retain, nonatomic) IBOutlet UITextField *tixianBackAddress;
 @property (retain, nonatomic) IBOutlet UITextField *tixianPhoneNumber;
 @property (retain, nonatomic) IBOutlet UIButton *tixianCommitButton;
+@property (retain, nonatomic) NSUserDefaults *ud;
 @property (retain , nonatomic) EMDelegateClass *delegateClass;
 -(void)initTextFiled;
 - (IBAction)tixianCommit:(id)sender;

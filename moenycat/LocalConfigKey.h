@@ -31,6 +31,7 @@
 #define CONFIG_KEY_DEVICEID         @"_deviceid" //设备ID
 #define CONFIG_KEY_REG_DEVICE       @"_reg_device_done"//注册设备标志
 #define CONFIG_KEY_LOCAL_HIPATH     @"_header_local_path" //本地的头像
+#define CONFIG_KEY_DEFAULT_HEADER   @"test_headimage3.jpg"
 //个人信息
 #define CONFIG_KEY_INFO_NICKNAME            @"uname" //昵称
 #define CONFIG_KEY_INFO_PHONE               @"utelephone" //电话号码

@@ -33,8 +33,8 @@
 {
     [super viewDidLoad];
     [self setTitle:@"超值兑换"];
-    _tableView.delegate = self;
-    _tableView.dataSource = self;
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
     UIButton *right = [[UIButton alloc]init];
     [right addTarget:self action:@selector(rightItemClick) forControlEvents:UIControlEventTouchUpInside];
     right.frame = CGRectMake(0, 0, 45, 20);
@@ -46,8 +46,8 @@
     //添加点击事件
     self.navigationItem.rightBarButtonItem = ritem;
     //添加下拉刷新控件
-    _refreshControl = [[ODRefreshControl alloc]initInScrollView:_tableView];
-    [_refreshControl addTarget:self action:@selector(dropViewDidBeginRefreshing:) forControlEvents:UIControlEventValueChanged];
+    _refresh = [[ODRefreshControl alloc]initInScrollView:self.tableView];
+    [_refresh addTarget:self action:@selector(dropViewDidBeginRefreshing:) forControlEvents:UIControlEventValueChanged];
     //初始化兑换列表
     _delegateClass = [[EMDelegateClass alloc]init];
     _delegateClass.rootView = self.view;
@@ -62,7 +62,7 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"EMDuiHuanCell";
-    EMDuiHuanCell *cell = (EMDuiHuanCell *)[_tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    EMDuiHuanCell *cell = (EMDuiHuanCell *)[self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         NSArray *marray = [[NSBundle mainBundle] loadNibNamed:@"EMDuiHuanCell" owner:self options:nil];
         cell = [marray objectAtIndex:0];
@@ -71,7 +71,7 @@
         UIColor* color=[EMColorHex getColorWithHexString:@"#FDB2B2"];
     cell.selectedBackgroundView=[[[UIView alloc]initWithFrame:cell.frame]autorelease];
     cell.selectedBackgroundView.backgroundColor = color;
-    [cell setBackgroundColor:_tableView.backgroundColor];
+    [cell setBackgroundColor:self.tableView.backgroundColor];
     NSDictionary *dic = [_duihuanArray objectAtIndex:indexPath.row];
     NSString *title = [dic objectForKey:@"pname"];
     NSString *num = [[dic objectForKey:@"pnum"] stringValue];
@@ -104,7 +104,7 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [_tableView deselectRowAtIndexPath:indexPath animated:NO];
+    [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
     [self onItemClickNSIndexPath:indexPath];
     
 }
@@ -126,13 +126,7 @@
 
     } else {
         
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"绑定手机号码后才能兑换哦!" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"绑定", nil];
-        [alert showAlertViewWithCompleteBlock:^(NSInteger buttonIndex) {
-            if (buttonIndex == 1) {
-                [self pushViewControllerWithStorboardName:@"bind_input" sid:@"bind" hiddenTabBar:YES];
-                
-            }
-        }];
+        [self showBindDialog];
 
     }
 
@@ -152,19 +146,17 @@
             [_duihuanArray addObject:dic];
         }
     }
-    [_tableView reloadData];
+    [self.tableView reloadData];
     double delayInSeconds = 0.5f;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        [_refreshControl endRefreshing];
+        [_refresh endRefreshing];
     });
 }
 
 - (void)dealloc {
 
-
-    [_tableView release];
-    [_refreshControl release];
+    [_refresh release];
     [_duihuanArray release];
     [_delegateClass release];
     [super dealloc];

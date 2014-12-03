@@ -22,10 +22,10 @@
     [_tixianCommitButton.layer setMasksToBounds:YES];
     [_tixianCommitButton.layer setCornerRadius:4.0];
     //读取提现信息
-    NSString *name = [self getStringValueForKey:CONFIG_KEY_BANK_NAME];
-    NSString *bkn = [self getStringValueForKey:CONFIG_KEY_BANK_NUMBER];
-    NSString *bka = [self getStringValueForKey:CONFIG_KEY_BANK_ADDR];
-    NSString *phone = [self getStringValueForKey:CONFIG_KEY_BANK_PHONE];
+    NSString *name = [self.ud stringForKey:CONFIG_KEY_BANK_NAME];
+    NSString *bkn = [self.ud stringForKey:CONFIG_KEY_BANK_NUMBER];
+    NSString *bka = [self.ud stringForKey:CONFIG_KEY_BANK_ADDR];
+    NSString *phone = [self.ud stringForKey:CONFIG_KEY_BANK_PHONE];
     [_tixianName setText:name];
     [_tixianBankNumber setText:bkn];
     [_tixianBackAddress setText:bka];
@@ -54,10 +54,10 @@
     NSString *bka = _tixianBackAddress.text;
     NSString *phone = _tixianPhoneNumber.text;
     if (name.length != 0 && bkn.length != 0 && bka.length != 0 && phone.length != 0) {
-        [self setStringValueForKey:CONFIG_KEY_BANK_NAME val:name];
-        [self setStringValueForKey:CONFIG_KEY_BANK_NUMBER val:bkn];
-        [self setStringValueForKey:CONFIG_KEY_BANK_ADDR val:bka];
-        [self setStringValueForKey:CONFIG_KEY_BANK_PHONE val:phone];
+        [_ud setObject:name forKey:CONFIG_KEY_BANK_NAME];
+        [_ud setObject:bkn forKey:CONFIG_KEY_BANK_NUMBER];
+        [_ud setObject:bka forKey:CONFIG_KEY_BANK_ADDR];
+        [_ud setObject:phone forKey:CONFIG_KEY_BANK_PHONE];
         [_delegateClass EMDelegateTixianCommit];
     } else {
         [FVCustomAlertView showDefaultWarningAlertOnView:self.view withTitle:@"信息不完整"];
@@ -84,6 +84,7 @@
     [_tixianBackAddress release];
     [_tixianPhoneNumber release];
     [_tixianCommitButton release];
+    [_ud release];
     [super dealloc];
 }
 @end

@@ -125,5 +125,66 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+-(void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response
+{
+    //根据`responseCode`得到发送结果,如果分享成功
+    if(response.responseCode == UMSResponseCodeSuccess)
+    {
+        //得到分享到的微博平台名
+        //分享成功.面试次数++
+        NSLog(@"分享成功");
+        [FVCustomAlertView showDefaultDoneAlertOnView:self.window.rootViewController.view withTitle:@"分享成功!"];
+        double delayInSeconds = 1.0;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            [FVCustomAlertView hideAlertFromView:self.window.rootViewController.view fading:NO];
+        });
+    }
+}
 
+-(void)didSelectSocialPlatform:(NSString *)platformName withSocialData:(UMSocialData *)socialData{
+    NSLog(@"点击了分享平台");
+}
+-(void)openShare:(NSString *)url title:(NSString *)title content:(NSString *)content urlLogo:(NSString*)urlLogo{
+    
+    //朋友圈
+    UMSocialData *data = [UMSocialData defaultData];
+    data.extConfig.wechatTimelineData.url = url;
+    data.extConfig.wechatTimelineData.shareText = title;
+    [data.extConfig.wechatTimelineData.urlResource setResourceType:UMSocialUrlResourceTypeImage url:urlLogo];
+    //新浪微博
+    data.extConfig.sinaData.urlResource.url = url;
+    data.extConfig.sinaData.shareText = title;
+    [data.extConfig.sinaData.urlResource setResourceType:UMSocialUrlResourceTypeImage url:urlLogo];
+    //腾讯微博
+    data.extConfig.tencentData.urlResource.url = url;
+    data.extConfig.tencentData.shareText = title;
+    [data.extConfig.tencentData.urlResource setResourceType:UMSocialUrlResourceTypeImage url:urlLogo];
+    //QQ空间
+    data.extConfig.qzoneData.url = url;
+    data.extConfig.qzoneData.shareText = title;
+    [data.extConfig.qqData.urlResource setResourceType:UMSocialUrlResourceTypeImage url:urlLogo];
+    //短信
+    data.extConfig.smsData.urlResource.url = url;
+    data.extConfig.smsData.shareText = title;
+    [data.extConfig.smsData.urlResource setResourceType:UMSocialUrlResourceTypeImage url:urlLogo];
+    //微信好友
+    data.extConfig.wechatSessionData.url = url;
+    data.extConfig.wechatSessionData.shareText = title;
+    [data.extConfig.wechatSessionData.urlResource setResourceType:UMSocialUrlResourceTypeImage url:urlLogo];
+    //QQ好友
+    data.extConfig.qqData.url = url;
+    data.extConfig.qqData.shareText = title;
+    [data.extConfig.qqData.urlResource setResourceType:UMSocialUrlResourceTypeImage url:urlLogo];
+    //邮件
+    data.extConfig.emailData.urlResource.url = url;
+    data.extConfig.emailData.shareText = title;
+    [data.extConfig.emailData.urlResource setResourceType:UMSocialUrlResourceTypeImage url:urlLogo];
+    [UMSocialSnsService presentSnsIconSheetView:self.window.rootViewController
+                                         appKey:@"53df75a0fd98c5be20015ccf"
+                                      shareText:title//文字
+                                     shareImage:[UIImage imageNamed:@"logo.png"] //图片
+                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToTencent,UMShareToQzone,UMShareToSms,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToQQ,UMShareToEmail,nil]
+                                       delegate:self];
+}
 @end

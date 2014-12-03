@@ -34,6 +34,7 @@
 - (void)dealloc {
     [_titleLable release];
     [_descriptionLable release];
+    [_numLable release];
     [super dealloc];
 }
 @end

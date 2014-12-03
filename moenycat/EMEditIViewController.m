@@ -28,7 +28,7 @@
 -(void)saveText{
 
     //保存信息
-    EMEditCell *cell = (EMEditCell *)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
+    EMEditCell *cell = (EMEditCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
     NSString *text = cell.edittext.text;
     if (text.length > 0) {
         EMAppDelegate *de = [[UIApplication sharedApplication] delegate];
@@ -74,8 +74,8 @@
 {
     [super viewDidLoad];
     [self setTitle:@"编辑"];
-    _tableView.dataSource = self;
-    _tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
     // Do any additional setup after loading the view.
     UIButton *saveButton = [[UIButton alloc]init];
     saveButton.showsTouchWhenHighlighted = YES;
@@ -129,7 +129,7 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"EMEditCell";
-    EMEditCell *cell = (EMEditCell *)[_tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    EMEditCell *cell = (EMEditCell *)[self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if(cell == nil){
         NSArray *marray = [[NSBundle mainBundle] loadNibNamed:@"EMEditCell" owner:self options:nil];
         cell = [marray objectAtIndex:0];
@@ -167,7 +167,6 @@
 }
 
 - (void)dealloc {
-    [_tableView release];
     [super dealloc];
 }
 @end

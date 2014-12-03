@@ -10,7 +10,7 @@
 #import "EMBaseViewController.h"
 #import "EDColor.h"
 #import "FVCustomAlertView/FVCustomAlertView.h"
-@interface EMFeedBackViewController : EMBaseViewController <EMDelegate>
+@interface EMFeedBackViewController : UIViewController <EMDelegate>
 @property (retain, nonatomic) IBOutlet UITextField *feedBackContentField;
 @property (retain, nonatomic) IBOutlet UIButton *feedBackCommit;
 @property (retain , nonatomic) EMDelegateClass *delegateClass;

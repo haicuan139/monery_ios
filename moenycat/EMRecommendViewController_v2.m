@@ -26,8 +26,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _tableView.dataSource = self;
-    _tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
     //添加下拉刷新
     [self initPullRefreshView];
      _delegateClass = [[EMDelegateClass alloc]init];
@@ -37,32 +37,32 @@
     _viewsArray = [[NSMutableArray alloc] init];
     _taskListArray = [[NSMutableArray alloc]init];
     _taskLoopListArray = [[NSMutableArray alloc]init];
-    [_tableView setHidden:YES];
+    [self.tableView setHidden:YES];
     [_delegateClass EMDelegateInitTaskList];
     [_delegateClass EMDelegateInitTaskLoop];
     NSLog(@"初始化任务列表");
-    [_tableView setBackgroundColor:[UIColor whiteColor]];
+    [self.tableView setBackgroundColor:[UIColor whiteColor]];
 }
 
 -(void)onAdLisrLoadError{
-    [_tableView setHidden:NO];
-    [_tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    [self.tableView setHidden:NO];
+    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [_refreshView endRefreshing];
 }
 #pragma mark - 初始化任务列表的时候
 -(void)onInitTaskListForServer:(NSArray *)taskList{
-        [_tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
+        [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
     [_taskListArray removeAllObjects];
         NSLog(@"当前数组数量任务列表:%lu",(unsigned long)taskList.count);
     for (int i = 0; i < taskList.count; i++) {
         [_taskListArray addObject:[taskList objectAtIndex:i]];
     }
-    [_tableView reloadData];
-    [_tableView setHidden:NO];
+    [self.tableView reloadData];
+    [self.tableView setHidden:NO];
 }
 #pragma mark - 初始化焦点图列表
 -(void)onInitTaskLoopListForServer:(NSArray *)loopList{
-        [_tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
+        [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
     NSLog(@"当前数组数量焦点图列表:%lu",(unsigned long)loopList.count);
     [_viewsArray removeAllObjects];
     [_taskLoopListArray removeAllObjects];
@@ -77,8 +77,8 @@
         [_viewsArray addObject:imageView];
         [_taskLoopListArray addObject:dic];
     }
-    [_tableView reloadData];
-    [_tableView setHidden:NO];
+    [self.tableView reloadData];
+    [self.tableView setHidden:NO];
     double delayInSeconds = 0.5f;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
@@ -126,7 +126,7 @@
     //加载轮询
     if (indexPath.row == 0) {
         static NSString *CellIdentifier_autoscroll = @"EMRecommendAutoScrollCell";
-        EMHomeAutoScrollCell *cell_sutoscroll = (EMHomeAutoScrollCell *)[_tableView dequeueReusableCellWithIdentifier:CellIdentifier_autoscroll];
+        EMHomeAutoScrollCell *cell_sutoscroll = (EMHomeAutoScrollCell *)[self.tableView dequeueReusableCellWithIdentifier:CellIdentifier_autoscroll];
         if(cell_sutoscroll == nil){
             NSArray *marray = [[NSBundle mainBundle] loadNibNamed:@"EMRecommendAutoScrollCell" owner:self options:nil];
             cell_sutoscroll = [marray objectAtIndex:0];
@@ -169,7 +169,7 @@
 #pragma mark 初始化下拉刷新控件
 -(void)initPullRefreshView{
     
-     _refreshView = [[ODRefreshControl alloc]initInScrollView:_tableView];
+     _refreshView = [[ODRefreshControl alloc]initInScrollView:self.tableView];
     [_refreshView addTarget:self action:@selector(dropViewDidBeginRefreshing:) forControlEvents:UIControlEventValueChanged];
     
 }
@@ -230,7 +230,7 @@
 }
 -(void)dealloc{
     [super dealloc];
-    [_tableView release];
+    [self.tableView release];
     [_viewsArray release];
     [_autoScrollView release];
     [_pageControl release];

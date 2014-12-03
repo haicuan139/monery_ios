@@ -34,14 +34,12 @@
 {
     [super viewDidLoad];
     [self setTitle:@"广告记录"];
-    _tableView.dataSource = self;
-    _tableView.delegate = self;
     _delegateClass = [[EMDelegateClass alloc]init];
     _delegateClass.rootView = self.view;
     _delegateClass.delegate = self;
     _adlistArray = [[NSMutableArray alloc]init];
     [_delegateClass EMDelegateInitAdlistHistory];
-    [_tableView setBackgroundColor:[UIColor whiteColor]];
+    [self.tableView setBackgroundColor:[UIColor whiteColor]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -114,13 +112,13 @@
         [_adlistArray addObject:dic];
     }
     if (_adlistArray.count == 0) {
-        [_tableView setHidden:YES];
+        [self.tableView setHidden:YES];
         [FVCustomAlertView showDefaultWarningAlertOnView:self.view withTitle:@"没有记录"];
     }
-    [_tableView reloadData];
+    [self.tableView reloadData];
 }
 - (void)dealloc {
-    [_tableView release];
+    [self.tableView release];
     [_adlistArray release];
     [_delegateClass release];
     [super dealloc];

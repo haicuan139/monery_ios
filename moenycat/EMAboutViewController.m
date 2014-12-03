@@ -28,7 +28,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSString *type = [self getStringValueForKey:CONFIG_KEY_WEB_TYPE];
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    NSString *type = [ud stringForKey:CONFIG_KEY_WEB_TYPE];
     NSString *url = @"";
             [self setTitle:type];
     if ([type isEqualToString:@"商务合作"]) {

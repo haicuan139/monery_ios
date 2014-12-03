@@ -25,9 +25,17 @@
     NSString *tel = [myInfo objectForKey:CONFIG_KEY_INFO_PHONE];
     NSString *nickName = [myInfo objectForKey:CONFIG_KEY_INFO_NICKNAME];
     NSURL *url = [ NSURL URLWithString :[myInfo objectForKey:CONFIG_KEY_INFO_HEADER_URL]];
-//    如果本地有图片就使用本地的图片
-        [_headerImage setImageWithURL:url placeholderImage:[UIImage imageNamed:@"test_headimage3.jpg"]];
-    
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *localImage = [ud stringForKey:CONFIG_KEY_LOCAL_HIPATH];
+    BOOL result = [fileManager fileExistsAtPath:localImage];
+    if (result) {
+        //    如果本地有图片就使用本地的图片
+        [_headerImage setImage:[UIImage imageNamed:localImage]];
+    } else {
+        
+        [_headerImage setImageWithURL:url placeholderImage:[UIImage imageNamed:CONFIG_KEY_DEFAULT_HEADER]];
+    }
     [_nickNameLable setText:nickName];
     [_telPhoneLable setText:tel];
     NSLog(@"加载个人信息的回掉执行!");

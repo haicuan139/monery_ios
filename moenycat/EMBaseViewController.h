@@ -26,7 +26,7 @@
 #import "UIAlertView+Block.h"
 #import "FVCustomAlertView/FVCustomAlertView.h"
 #import "EDColor.h"
-@interface EMBaseViewController : UIViewController <WXApiDelegate , UMSocialUIDelegate,UIAlertViewDelegate,EAIntroDelegate,ASIHTTPRequestDelegate>
+@interface EMBaseViewController : UITableViewController <UIAlertViewDelegate,EAIntroDelegate,ASIHTTPRequestDelegate>
 @property (nonatomic , retain) NSUserDefaults* userDef;
 @property (nonatomic , retain) EMMyInfoTitleView* headerView;
 @property (nonatomic , retain) UIAlertView* baseAlertView;
@@ -55,5 +55,8 @@
 -(void)showBaseDialog:(NSString *)message;//只有确定取消的Dialog
 -(void)headerViewClick;
 -(BOOL)writeImage:(UIImage*)image toFileAtPath:(NSString*)aPath;//保存图片到本地
-
+- (BOOL) isFileExist:(NSString *)fileName;
+-(void)onLandScreen;//横屏
+-(void)onPortScreen;//竖屏
+-(void)showBindDialog;
 @end

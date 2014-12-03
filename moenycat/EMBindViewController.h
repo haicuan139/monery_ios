@@ -9,7 +9,7 @@
 #import "EMBaseViewController.h"
 #import "EDCOlor.h"
 #import "FVCustomAlertView/FVCustomAlertView.h"
-@interface EMBindViewController : EMBaseViewController <EMDelegate>
+@interface EMBindViewController : UIViewController <EMDelegate>
 @property (retain, nonatomic) IBOutlet UITextField *bindName;
 @property (retain, nonatomic) IBOutlet UITextField *bindPhone;
 @property (retain, nonatomic) IBOutlet UITextField *bindCardNumber;
@@ -19,5 +19,6 @@
 - (IBAction)commitBindInfo:(id)sender;
 @property (retain, nonatomic) IBOutlet UIButton *sendCodeButton;
 - (IBAction)sendCode:(id)sender;
+@property (retain ,nonatomic) NSUserDefaults *ud;
 
 @end

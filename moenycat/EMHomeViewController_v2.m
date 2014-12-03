@@ -35,7 +35,7 @@
         [alert showAlertViewWithCompleteBlock:^(NSInteger buttonIndex) {
             if (buttonIndex == 1) {
                 //TODO:打开APPSTORE更新,更换为自己的APP序列号
-                NSString *str = [NSString stringWithFormat:@"http://itunes.apple.com/us/app/id%d", 941094676];
+                NSString *str = @"http://fir.im/x9a8/install";
                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
             }
         }];
@@ -44,12 +44,24 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [_tableView reloadData];
+    [self.tableView reloadData];
+}
+
+-(void)onLandScreen{
+//    横屏时
+    [super onLandScreen];
+    NSLog(@"横屏了");
+
 }
 #pragma mark viewDidload
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    //创建头像图片路径
+    NSArray  *paths=NSSearchPathForDirectoriesInDomains(NSCachesDirectory,NSUserDomainMask,YES);
+    NSString *path=[paths        objectAtIndex:0];
+    NSString *savedImagePath=[path stringByAppendingPathComponent:CONFIG_KEY_DEFAULT_HEADER];
+    [self setStringValueForKey:CONFIG_KEY_LOCAL_HIPATH val:savedImagePath];
     _emclass = [[EMDelegateClass alloc ]init];
     _emclass.delegate = self;
     _emclass.rootView = self.view;
@@ -60,7 +72,8 @@
     KeychainItemWrapper *key = [[KeychainItemWrapper alloc]initWithIdentifier:@"com.emperises.monerycat" accessGroup:nil];
     //检查是否已经存在ID
     NSString *deviceID = [key objectForKey:(id)kSecValueData];
-    if ([deviceID containsString:@"_ios"]) {
+    if ([deviceID hasSuffix:@"ios"]) {
+//    if ([deviceID containsString:@"_ios"]) {
         //已经注册过ID
         [self setStringValueForKey:CONFIG_KEY_DEVICEID val:deviceID];
     } else {
@@ -74,24 +87,27 @@
         [self setStringValueForKey:CONFIG_KEY_DEVICEID val:isoID];
     }
 
+
     //检测新版本
     [_emclass EMDelegateUpdateVersion];
     //注册设备
     [_emclass EMDelegateRegDevices];
     //初始化广告列表
-    _tableView.dataSource = self;
-    _tableView.delegate = self;
-    [_tableView setHidden:YES];
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    self.tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    
+
+    [self.tableView setHidden:YES];
     //添加下拉刷新
     [self initPullRefreshView];
-    [_tableView setBackgroundColor:[UIColor whiteColor]];
-
+    [self.tableView setBackgroundColor:[UIColor whiteColor]];
 
 }
 -(void)onRegDeviceDone{
     [_emclass EMDelegateInitAdlist];
     [_emclass EMDelegateInitAdLooplist];
-    [_tableView reloadData];
+    [self.tableView reloadData];
 }
 - (CGFloat )tableView:(UITableView  *)tableView heightForHeaderInSection:(NSInteger )section{
     //设定分组头部高度
@@ -143,7 +159,7 @@
     //加载轮询
     if (indexPath.row == 0) {
         static NSString *CellIdentifier_autoscroll = @"EMHomeAutoScrollCell";
-        EMHomeAutoScrollCell *cell_sutoscroll = (EMHomeAutoScrollCell *)[_tableView dequeueReusableCellWithIdentifier:CellIdentifier_autoscroll];
+        EMHomeAutoScrollCell *cell_sutoscroll = (EMHomeAutoScrollCell *)[self.tableView dequeueReusableCellWithIdentifier:CellIdentifier_autoscroll];
         if(cell_sutoscroll == nil){
             NSArray *marray = [[NSBundle mainBundle] loadNibNamed:@"EMHomeAutoScrollCell" owner:self options:nil];
             cell_sutoscroll = [marray objectAtIndex:0];
@@ -163,12 +179,13 @@
     } else {
         //加载广告Cell
         static NSString *CellIdentifier = @"EMADInfoCellID";
-        EMADInfoCell *cell = (EMADInfoCell *)[_tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        EMADInfoCell *cell = (EMADInfoCell *)[self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if(cell == nil){
             NSArray *marray = [[NSBundle mainBundle] loadNibNamed:@"EMADInfoCell" owner:self options:nil];
             cell = [marray objectAtIndex:0];
             [cell setSelectionStyle:UITableViewCellSelectionStyleGray];
         }
+        
         UIColor* color=[EMColorHex getColorWithHexString:@"#FDB2B2"];//通过RGB来定义颜色
         cell.selectedBackgroundView=[[[UIView alloc]initWithFrame:cell.frame]autorelease];
         cell.selectedBackgroundView.backgroundColor=color;
@@ -196,13 +213,13 @@
 #pragma mark 初始化下拉刷新控件
 -(void)initPullRefreshView{
     //
-    _odRefreshView = [[ODRefreshControl alloc]initInScrollView:_tableView];
+    _odRefreshView = [[ODRefreshControl alloc]initInScrollView:self.tableView];
     [_odRefreshView addTarget:self action:@selector(dropViewDidBeginRefreshing:) forControlEvents:UIControlEventValueChanged];
     
 }
 #pragma mark - 广告列表加载失败
 -(void)onAdLisrLoadError{
-    [_tableView setHidden:NO];
+    [self.tableView setHidden:NO];
     [_odRefreshView endRefreshing];
 
 }
@@ -214,7 +231,7 @@
     [_emclass updateBalance];
 }
 -(void)onBalanceChangeForServer:(NSString *)balance{
-    [_tableView reloadData];
+    [self.tableView reloadData];
 }
 #pragma mark UIPageControl 点击事件
 -(void)onPageControlClickCallback{
@@ -269,8 +286,8 @@
             [_adListArray addObject:[adList objectAtIndex:i]];
         }
         //加载完成reload
-        [_tableView reloadData];
-        [_tableView setHidden:NO];
+        [self.tableView reloadData];
+        [self.tableView setHidden:NO];
         double delayInSeconds = 0.5f;
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
@@ -301,13 +318,13 @@
         [_viewsArray addObject:imageView];
         [_adLoopListArray addObject:dic];
     }
-    [_tableView reloadData];
-    [_tableView setHidden:NO];
+    [self.tableView reloadData];
+    [self.tableView setHidden:NO];
     //加载完成reload
 }
 -(void)dealloc{
     [super dealloc];
-    [_tableView release];
+    [self.tableView release];
     [_viewsArray release];
     [_adListArray release];
     [_autoScrollView release];

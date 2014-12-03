@@ -11,9 +11,8 @@
 #import "EMTixianCell.h"
 #import "EMAppDelegate.h"
 #import "FVCustomAlertView/FVCustomAlertView.h"
-@interface EMTiXianTableViewController : EMBaseViewController <UITableViewDataSource , UITableViewDelegate,EMDelegate>
+@interface EMTiXianTableViewController : EMBaseViewController <EMDelegate>
 
-@property (retain, nonatomic) IBOutlet UITableView *tableView;
 @property (retain, nonatomic) EMDelegateClass *delegateClass;
 @property (retain, nonatomic) NSMutableArray *tixianArray;
 @end

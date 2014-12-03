@@ -11,5 +11,6 @@
 @interface EMTixianCell : UITableViewCell
 @property (retain, nonatomic) IBOutlet UILabel *titleLable;
 @property (retain, nonatomic) IBOutlet UILabel *descriptionLable;
+@property (retain, nonatomic) IBOutlet UILabel *numLable;
 
 @end

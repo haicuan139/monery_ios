@@ -12,7 +12,7 @@
 #import <JavaScriptCore/JavaScriptCore.h>
 #import "EMAppDelegate.h"
 #import "EMBaseViewController.h"
-@interface EMAboutViewController :EMBaseViewController  <UIWebViewDelegate>
+@interface EMAboutViewController :UIViewController  <UIWebViewDelegate>
 @property (strong, nonatomic) WebViewJavascriptBridge *javascriptBridge;
 @property (retain, nonatomic) IBOutlet UIWebView *_webView;
 

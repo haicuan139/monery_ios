@@ -40,7 +40,7 @@
 -(void)onRegDeviceDone; //注册设备完成
 @end
 @interface EMDelegateClass : NSObject
-@property (nonatomic , assign) id<EMDelegate> delegate;
+@property (nonatomic , retain) id<EMDelegate> delegate;
 @property (nonatomic , retain) NSUserDefaults *ud;
 @property (nonatomic , retain) UIView *rootView;
 -(NSString *)replaceUnicode:(NSString *)unicodeStr;

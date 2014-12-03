@@ -8,7 +8,7 @@
 
 #import "EMBaseViewController.h"
 
-@interface EMQRCodeViewController : EMBaseViewController
+@interface EMQRCodeViewController : UIViewController
 @property (retain, nonatomic) IBOutlet UIImageView *headerImage;
 @property (retain, nonatomic) IBOutlet UILabel *nickName;
 

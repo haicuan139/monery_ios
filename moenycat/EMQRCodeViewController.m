@@ -19,15 +19,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setTitle:@"二维码"];
-    NSString *nickName = [self getStringValueForKey:CONFIG_KEY_INFO_NICKNAME];
-    NSString *imagePath = [self getStringValueForKey:CONFIG_KEY_INFO_HEADER_URL];
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    if ([fileManager fileExistsAtPath:imagePath]) {
-        UIImage *h = [UIImage imageWithContentsOfFile:imagePath];
-        [_headerImage setImage:h];
-    } else {
-        [_headerImage setImage:[UIImage imageNamed:@"test_headimage3.jpg"]];
-    }
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    NSString *nickName = [ud stringForKey:CONFIG_KEY_INFO_NICKNAME];
+    NSString *imagePath =        [ud stringForKey:CONFIG_KEY_LOCAL_HIPATH];
+    NSString *headerUrl =        [ud stringForKey:CONFIG_KEY_INFO_HEADER_URL];
+    UIImage *image = [UIImage imageNamed:imagePath];
+    [_headerImage setImageWithURL:[NSURL URLWithString:headerUrl] placeholderImage:image];
     [_nickName setText:nickName];
 }
 

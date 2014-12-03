@@ -13,8 +13,7 @@
 #import "EMADTaskCell.h"
 #import "ODRefreshControl.h"
 #import "EMAppDelegate.h"
-@interface EMRecommendViewController_v2 : EMBaseViewController <UITableViewDataSource , UITableViewDelegate ,UIScrollViewDelegate , EMDelegate>
-@property (nonatomic , retain) IBOutlet UITableView* tableView;
+@interface EMRecommendViewController_v2 : EMBaseViewController <UIScrollViewDelegate , EMDelegate>
 @property (nonatomic , retain) NSMutableArray *viewsArray;
 @property (nonatomic , retain) NSMutableArray *taskListArray;
 @property (nonatomic , retain) NSMutableArray *taskLoopListArray;

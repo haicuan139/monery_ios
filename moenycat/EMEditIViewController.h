@@ -11,8 +11,7 @@
 #import "EMEditCell.h"
 #import "EMAppDelegate.h"
 #import "FVCustomAlertView/FVCustomAlertView.h"
-@interface EMEditIViewController : EMBaseViewController <UITableViewDataSource,UITableViewDelegate ,UITextFieldDelegate>
-@property (retain, nonatomic) IBOutlet UITableView *tableView;
+@interface EMEditIViewController : EMBaseViewController <UITextFieldDelegate>
 -(void)saveText;
 -(void)cancel;
 -(void)textFieldDidChange:(UITextField *)textField;

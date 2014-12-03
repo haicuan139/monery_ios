@@ -16,8 +16,7 @@
 #import "EMDuihuanHistoryTableViewController.h"
 @interface EMDuiHuanTableViewController : EMBaseViewController <UITableViewDelegate , UITableViewDataSource , EMDelegate>
 
-@property (retain, nonatomic) IBOutlet UITableView *tableView;
-@property (retain , nonatomic) ODRefreshControl *refreshControl;
+@property (retain , nonatomic) ODRefreshControl *refresh;
 @property (retain , nonatomic) EMDelegateClass *delegateClass;
 @property (retain , nonatomic) NSMutableArray *duihuanArray;
 -(void)rightItemClick;

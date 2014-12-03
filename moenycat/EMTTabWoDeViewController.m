@@ -102,14 +102,19 @@
     UIColor* color=[EMColorHex getColorWithHexString:@"#FDB2B2"];//通过RGB来定义颜色
     cell.selectedBackgroundView=[[[UIView alloc]initWithFrame:cell.frame]autorelease];
     cell.selectedBackgroundView.backgroundColor=color;
-    UIImage *image = [UIImage imageNamed:@"test_headimage3.jpg"];
+    NSString *localImage = [self getStringValueForKey:CONFIG_KEY_LOCAL_HIPATH];
     [cell.tabHeaderIcon.layer setMasksToBounds:YES];
     [cell.tabHeaderIcon.layer setCornerRadius:5.0];
     //如果有本地图片
-   
+    if ([self isFileExist:localImage]) {
+        NSLog(@"本地文件存在");
+        [cell.tabHeaderIcon setImage:[UIImage imageNamed:localImage]];
+    } else{
+        UIImage *image = [UIImage imageNamed:CONFIG_KEY_DEFAULT_HEADER];
         NSString *hurl = [self getStringValueForKey:CONFIG_KEY_INFO_HEADER_URL];
         NSURL *url = [NSURL URLWithString:hurl];
         [cell.tabHeaderIcon setImageWithURL:url placeholderImage:image];
+    }
     
     NSString *nickName = [self getStringValueForKey:CONFIG_KEY_INFO_NICKNAME];
     NSString *tel      = [self getStringValueForKey:CONFIG_KEY_INFO_PHONE];

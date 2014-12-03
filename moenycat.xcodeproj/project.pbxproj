@@ -101,8 +101,6 @@
 		2249AF4919AAD9A1001A679A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2249AF2819AAD9A1001A679A /* UIKit.framework */; };
 		2249AF5119AAD9A1001A679A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2249AF4F19AAD9A1001A679A /* InfoPlist.strings */; };
 		2249AF5319AAD9A1001A679A /* moenycatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2249AF5219AAD9A1001A679A /* moenycatTests.m */; };
-		2249AF5F19AAE189001A679A /* EMHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2249AF5E19AAE189001A679A /* EMHomeViewController.m */; };
-		2249AF6219AAE1FB001A679A /* EMRecommendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2249AF6119AAE1FB001A679A /* EMRecommendViewController.m */; };
 		2249AF6519AAE214001A679A /* EMTTabWoDeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2249AF6419AAE214001A679A /* EMTTabWoDeViewController.m */; };
 		2249AF6819AAE225001A679A /* EMMoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2249AF6719AAE225001A679A /* EMMoreViewController.m */; };
 		2249AF6C19AAE23D001A679A /* EMBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2249AF6B19AAE23D001A679A /* EMBaseViewController.m */; };
@@ -196,11 +194,6 @@
 		22C93C5F19B58E3900D86F5F /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = 22C93C5E19B58E3900D86F5F /* share.png */; };
 		22C93C6119B5A38100D86F5F /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 22C93C6019B5A38100D86F5F /* logo.png */; };
 		22D413EA1A0B3AF2005AA15B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2217FCBF19AC5CF70054609F /* Security.framework */; };
-		22E2CE2A19AC67010085D6BB /* adtest1.png in Resources */ = {isa = PBXBuildFile; fileRef = 22E2CE2519AC67010085D6BB /* adtest1.png */; };
-		22E2CE2B19AC67010085D6BB /* adtest2.png in Resources */ = {isa = PBXBuildFile; fileRef = 22E2CE2619AC67010085D6BB /* adtest2.png */; };
-		22E2CE2C19AC67010085D6BB /* adtest3.png in Resources */ = {isa = PBXBuildFile; fileRef = 22E2CE2719AC67010085D6BB /* adtest3.png */; };
-		22E2CE2D19AC67010085D6BB /* adtest4.png in Resources */ = {isa = PBXBuildFile; fileRef = 22E2CE2819AC67010085D6BB /* adtest4.png */; };
-		22E2CE2E19AC67010085D6BB /* adtest5.png in Resources */ = {isa = PBXBuildFile; fileRef = 22E2CE2919AC67010085D6BB /* adtest5.png */; };
 		22E2CE3819AC6DFC0085D6BB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22E2CE3719AC6DFC0085D6BB /* Images.xcassets */; };
 		22E2CE3E19AC95670085D6BB /* EMMyInfoTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 22E2CE3D19AC95670085D6BB /* EMMyInfoTitleView.m */; };
 		22E2CE4219AC95CA0085D6BB /* EMMyInfoTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22E2CE4119AC95CA0085D6BB /* EMMyInfoTitleView.xib */; };
@@ -438,10 +431,6 @@
 		2249AF4E19AAD9A1001A679A /* moenycatTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "moenycatTests-Info.plist"; sourceTree = "<group>"; };
 		2249AF5019AAD9A1001A679A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2249AF5219AAD9A1001A679A /* moenycatTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = moenycatTests.m; sourceTree = "<group>"; };
-		2249AF5D19AAE189001A679A /* EMHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMHomeViewController.h; sourceTree = "<group>"; };
-		2249AF5E19AAE189001A679A /* EMHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMHomeViewController.m; sourceTree = "<group>"; };
-		2249AF6019AAE1FB001A679A /* EMRecommendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMRecommendViewController.h; sourceTree = "<group>"; };
-		2249AF6119AAE1FB001A679A /* EMRecommendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMRecommendViewController.m; sourceTree = "<group>"; };
 		2249AF6319AAE214001A679A /* EMTTabWoDeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMTTabWoDeViewController.h; sourceTree = "<group>"; };
 		2249AF6419AAE214001A679A /* EMTTabWoDeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMTTabWoDeViewController.m; sourceTree = "<group>"; };
 		2249AF6619AAE225001A679A /* EMMoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMMoreViewController.h; sourceTree = "<group>"; };
@@ -586,11 +575,6 @@
 		22C93C5B19B5770800D86F5F /* message.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = message.png; sourceTree = "<group>"; };
 		22C93C5E19B58E3900D86F5F /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share.png; sourceTree = "<group>"; };
 		22C93C6019B5A38100D86F5F /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
-		22E2CE2519AC67010085D6BB /* adtest1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = adtest1.png; sourceTree = "<group>"; };
-		22E2CE2619AC67010085D6BB /* adtest2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = adtest2.png; sourceTree = "<group>"; };
-		22E2CE2719AC67010085D6BB /* adtest3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = adtest3.png; sourceTree = "<group>"; };
-		22E2CE2819AC67010085D6BB /* adtest4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = adtest4.png; sourceTree = "<group>"; };
-		22E2CE2919AC67010085D6BB /* adtest5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = adtest5.png; sourceTree = "<group>"; };
 		22E2CE3719AC6DFC0085D6BB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		22E2CE3C19AC95670085D6BB /* EMMyInfoTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMMyInfoTitleView.h; sourceTree = "<group>"; };
 		22E2CE3D19AC95670085D6BB /* EMMyInfoTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMMyInfoTitleView.m; sourceTree = "<group>"; };
@@ -1051,10 +1035,6 @@
 			isa = PBXGroup;
 			children = (
 				2249AF6919AAE22D001A679A /* BaseViewController */,
-				2249AF5D19AAE189001A679A /* EMHomeViewController.h */,
-				2249AF5E19AAE189001A679A /* EMHomeViewController.m */,
-				2249AF6019AAE1FB001A679A /* EMRecommendViewController.h */,
-				2249AF6119AAE1FB001A679A /* EMRecommendViewController.m */,
 				2249AF6319AAE214001A679A /* EMTTabWoDeViewController.h */,
 				2249AF6419AAE214001A679A /* EMTTabWoDeViewController.m */,
 				2249AF6619AAE225001A679A /* EMMoreViewController.h */,
@@ -1356,11 +1336,6 @@
 				227A253E19ADB54200AA7C54 /* tab_recommend@2x.png */,
 				227A253319ADB15D00AA7C54 /* rmbicon_1.png */,
 				227A253419ADB15D00AA7C54 /* rmbicon_2.png */,
-				22E2CE2519AC67010085D6BB /* adtest1.png */,
-				22E2CE2619AC67010085D6BB /* adtest2.png */,
-				22E2CE2719AC67010085D6BB /* adtest3.png */,
-				22E2CE2819AC67010085D6BB /* adtest4.png */,
-				22E2CE2919AC67010085D6BB /* adtest5.png */,
 			);
 			name = res;
 			sourceTree = "<group>";
@@ -1621,7 +1596,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				22713C931A15154100D96952 /* UMShareEditViewController.xib in Resources */,
-				22E2CE2E19AC67010085D6BB /* adtest5.png in Resources */,
 				22EBF1DC1A0CE63500BF6740 /* 12@2x.png in Resources */,
 				22EBF1E51A0CE63500BF6740 /* 17.png in Resources */,
 				227A253519ADB15D00AA7C54 /* rmbicon_1.png in Resources */,
@@ -1633,7 +1607,6 @@
 				22EBF1D81A0CE63500BF6740 /* 10@2x.png in Resources */,
 				22EBF1F11A0CE63500BF6740 /* warning.png in Resources */,
 				22EBF1D91A0CE63500BF6740 /* 11.png in Resources */,
-				22E2CE2C19AC67010085D6BB /* adtest3.png in Resources */,
 				22EBF1C61A0CE63500BF6740 /* 1@2x.png in Resources */,
 				227A254519ADB54200AA7C54 /* tab_recommend.png in Resources */,
 				22352F791A0A005700C5E408 /* welcome_bg_3.png in Resources */,
@@ -1663,7 +1636,6 @@
 				2222A5251A139D580049F06E /* error.html in Resources */,
 				22352F761A0A005700C5E408 /* supportcat@2x.png in Resources */,
 				228FC2D819BC6D8900B47BB6 /* edit.storyboard in Resources */,
-				22E2CE2D19AC67010085D6BB /* adtest4.png in Resources */,
 				22EBF1EF1A0CE63500BF6740 /* cross.png in Resources */,
 				22EBF1D61A0CE63500BF6740 /* 9@2x.png in Resources */,
 				228FC2D319BC5E6100B47BB6 /* EMMyInfoLableTableViewCell.xib in Resources */,
@@ -1729,7 +1701,6 @@
 				22713C951A15154100D96952 /* UMSLoginViewController.xib in Resources */,
 				22EBF1CD1A0CE63500BF6740 /* 5.png in Resources */,
 				227A254019ADB54200AA7C54 /* tab_home@2x.png in Resources */,
-				22E2CE2B19AC67010085D6BB /* adtest2.png in Resources */,
 				22EBF1E41A0CE63500BF6740 /* 16@2x.png in Resources */,
 				225614C319B9643B005E3039 /* test_headimage3.jpg in Resources */,
 				22C93C6119B5A38100D86F5F /* logo.png in Resources */,
@@ -1737,7 +1708,6 @@
 				22EBF1CA1A0CE63500BF6740 /* 3@2x.png in Resources */,
 				22EBF1CB1A0CE63500BF6740 /* 4.png in Resources */,
 				22F5FF961A11E3DB00BA8E4A /* qrcode.storyboard in Resources */,
-				22E2CE2A19AC67010085D6BB /* adtest1.png in Resources */,
 				22EBF1E91A0CE63500BF6740 /* 19.png in Resources */,
 				22EBF1D11A0CE63500BF6740 /* 7.png in Resources */,
 				225614CA19B969F2005E3039 /* wodeguanggao.png in Resources */,
@@ -1820,7 +1790,6 @@
 				221A061D19E697C6005A6826 /* EMRecommendAutoScrollCell.m in Sources */,
 				2292938719C188CE00CB5F72 /* EMMingXiViewController.m in Sources */,
 				22EBF1891A0CAE7A00BF6740 /* MKAnnotationView+WebCache.m in Sources */,
-				2249AF6219AAE1FB001A679A /* EMRecommendViewController.m in Sources */,
 				221B58D81A0A268B0070DDA1 /* SBJsonStreamParser.m in Sources */,
 				22352F891A0A19F400C5E408 /* EMDelegate.m in Sources */,
 				22417BB619B42ACD001A36BC /* EMADHTML5ViewController.m in Sources */,
@@ -1852,7 +1821,6 @@
 				228FC2DB19BC6DED00B47BB6 /* EMEditCell.m in Sources */,
 				2242D95E1A14C00000EA7395 /* MPNotificationView.m in Sources */,
 				2217FCD319AC5D740054609F /* GzipCompressor.m in Sources */,
-				2249AF5F19AAE189001A679A /* EMHomeViewController.m in Sources */,
 				228FC2B619BC4FE800B47BB6 /* EMMyInfoHeaderIconCell.m in Sources */,
 				22ABE3C71A023464006035D9 /* UIColor+CIELAB.m in Sources */,
 				22FFCA8519C01FC900AD6250 /* VPImageCropperViewController.m in Sources */,

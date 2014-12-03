@@ -60,8 +60,6 @@
     [self initAgeData];
     [self setTitle:@"我"];
     isPickerShow = NO;
-    _tableView.dataSource  = self;
-    _tableView.delegate    = self;
     UIButton *right = [[UIButton alloc]init];
     [right addTarget:self action:@selector(rightItemClick) forControlEvents:UIControlEventTouchUpInside];
     right.frame = CGRectMake(0, 0, 45, 20);
@@ -70,13 +68,38 @@
     right.showsTouchWhenHighlighted = YES;
     UIBarButtonItem *ritem = [[UIBarButtonItem alloc]initWithCustomView:right];
     self.navigationItem.rightBarButtonItem = ritem;
+    _delegate = [[EMDelegateClass alloc]init];
+    _delegate.rootView = self.view;
+    _delegate.delegate = self;
 }
+-(void)onMyInfoInitDone:(NSDictionary *)myInfo{
 
+}
 -(void)rightItemClick{
     NSLog(@"保存个人信息");
-    //将UIImage 保存到本地
+    //如果个人信息的内容都不为空
+
+
+    NSString *tel = [self getStringValueForKey:CONFIG_KEY_INFO_PHONE];
+    //优先判断手机号码
+    if ([tel containsString:@"未绑定"]) {
+        [self showBindDialog];
+        return;
+    }
+        NSString *nickName  = [self getStringValueForKey:CONFIG_KEY_INFO_NICKNAME];
+        NSString *address   = [self getStringValueForKey:CONFIG_KEY_INFO_ADDRESS];
+        NSString *gender    = [self getStringValueForKey:CONFIG_KEY_INFO_GENDER];
+        NSString *age       = [self getStringValueForKey:CONFIG_KEY_INFO_AGE];
+    if (nickName.length > 0 && address.length >0 && gender.length > 0 && age.length > 0) {
+        [_delegate EMDelegatePostMyInfo];//提交个人信息
+    } else {
+        [FVCustomAlertView showDefaultWarningAlertOnView:self.view withTitle:@"信息不完整"];
+    }
+    
+}
+-(void)onMyInfoUpdateDoneToServer{
     if (headerImage) {
-        NSArray  *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+        NSArray  *paths=NSSearchPathForDirectoriesInDomains(NSCachesDirectory,NSUserDomainMask,YES);
         NSString *path=[paths        objectAtIndex:0];
         NSString *savedImagePath=[path stringByAppendingPathComponent:@"headerImage.jpg"];
         if ([self writeImage:headerImage toFileAtPath:savedImagePath]) {
@@ -87,24 +110,6 @@
             NSLog(@"保存头像出错!");
         }
     }
-    //如果个人信息的内容都不为空
-
-        NSString *nickName  = [self getStringValueForKey:CONFIG_KEY_INFO_NICKNAME];
-        NSString *address   = [self getStringValueForKey:CONFIG_KEY_INFO_ADDRESS];
-        NSString *gender    = [self getStringValueForKey:CONFIG_KEY_INFO_GENDER];
-        NSString *age       = [self getStringValueForKey:CONFIG_KEY_INFO_AGE];
-    if (nickName.length > 0 && address.length >0 && gender.length > 0 && age.length > 0) {
-        EMDelegateClass *delegate = [[EMDelegateClass alloc]init];
-        delegate.rootView = self.view;
-        delegate.delegate = self;
-        [delegate EMDelegatePostMyInfo];//提交个人信息
-    } else {
-        [FVCustomAlertView showDefaultWarningAlertOnView:self.view withTitle:@"信息不完整"];
-    }
-    
-}
--(void)onMyInfoUpdateDoneToServer{
-
 }
 -(void)initBaseLeftItem{
 
@@ -149,7 +154,7 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [_tableView deselectRowAtIndexPath:indexPath animated:NO];
+    [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
     [self onItemClickNSIndexPath:indexPath];
     
 }
@@ -157,7 +162,7 @@
     NSInteger index = [indexPath row];
     NSInteger section = [indexPath section];
     static NSString *CellIdentifier = @"EMMyInfoHeaderIconCell";
-    EMMyInfoHeaderIconCell *cell = (EMMyInfoHeaderIconCell *)[_tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    EMMyInfoHeaderIconCell *cell = (EMMyInfoHeaderIconCell *)[self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if(cell == nil){
         NSArray *marray = [[NSBundle mainBundle] loadNibNamed:@"EMMyInfoHeaderIconCell" owner:self options:nil];
         cell = [marray objectAtIndex:0];
@@ -168,16 +173,23 @@
     cell.selectedBackgroundView.backgroundColor=color;
     [cell.headerIcon.layer setMasksToBounds:YES];
     [cell.headerIcon.layer setCornerRadius:5.0];
-    //如果有本地图片
+    NSString *localImage = [self getStringValueForKey:CONFIG_KEY_LOCAL_HIPATH];
+    if ([self isFileExist:localImage]) {
+        //本地头像存在
+        //如果有本地图片
+        NSLog(@"本地头像存在");
+        [cell.headerIcon setImage:[UIImage imageNamed:localImage]];
+    } else {
         NSString *url = [self getStringValueForKey:CONFIG_KEY_INFO_HEADER_URL];
         NSURL *hur = [NSURL URLWithString:url];
-        [cell.headerIcon setImageWithURL:hur placeholderImage:[UIImage imageNamed:@"test_headimage3.jpg"]];
+        [cell.headerIcon setImageWithURL:hur placeholderImage:[UIImage imageNamed:CONFIG_KEY_DEFAULT_HEADER]];
+    }
     //加载刚刚选择的图片
     if (headerImage) {
         [cell.headerIcon setImage:headerImage];
     }
     static NSString *CellIdentifier_1 = @"EMMyInfoLableTableViewCell";
-    EMMyInfoLableTableViewCell *cell_1 = (EMMyInfoLableTableViewCell *)[_tableView dequeueReusableCellWithIdentifier:CellIdentifier_1];
+    EMMyInfoLableTableViewCell *cell_1 = (EMMyInfoLableTableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:CellIdentifier_1];
     if(cell_1 == nil){
         NSArray *marray = [[NSBundle mainBundle] loadNibNamed:@"EMMyInfoLableTableViewCell" owner:self options:nil];
         cell_1 = [marray objectAtIndex:0];
@@ -208,7 +220,7 @@
 }
 #pragma mark - onItemClick
 -(void)onItemClickNSIndexPath:(NSIndexPath *)indexPath{
-    EMAppDelegate *app = [[UIApplication sharedApplication] delegate];
+    EMAppDelegate *app = (EMAppDelegate *)[[UIApplication sharedApplication] delegate];
     //条目点击事件
     NSInteger index = [indexPath row];
     NSInteger section = [indexPath section];
@@ -248,9 +260,17 @@
             NSLog(@"二维码界面");
             [self showQrCodeImage];
         } else if (index == 1){
-            
+            if ([self getBoolValueForKey:CONFIG_KEY_BIND_FLG]) {
+                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"已经绑定过!" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+                [alert showAlertViewWithCompleteBlock:^(NSInteger buttonIndex) {
+                }];
+            } else {
+                [self pushViewControllerWithStorboardName:@"bind_input" sid:@"bind" hiddenTabBar:YES];
+                
+            }
             //绑定手机号码界面
             NSLog(@"绑定手机号码界面");
+    
         } else if (index == 2) {
             //复制专属链接到剪切板
             NSLog(@"专属链接");
@@ -310,13 +330,13 @@
                 [self setStringValueForKey:CONFIG_KEY_INFO_GENDER val:@"女"];
             }
             [self initLocalInfo];
-            [_tableView reloadData];
+            [self.tableView reloadData];
         }
 }
 #pragma mark VPImageCropperDelegate
 - (void)imageCropper:(VPImageCropperViewController *)cropperViewController didFinished:(UIImage *)editedImage{
     headerImage = editedImage;
-    [_tableView reloadData];
+    [self.tableView reloadData];
     [cropperViewController dismissViewControllerAnimated:YES completion:^{
         NSLog(@"View消失");
     }];
@@ -527,7 +547,7 @@
     [self setStringValueForKey:CONFIG_KEY_INFO_AGE val:s];
     NSLog(@"done :%@",s);
     [self initLocalInfo];
-    [_tableView reloadData];
+    [self.tableView reloadData];
 }
 -(void)startInAnimation{
     //开启动画
@@ -571,7 +591,7 @@
     return 1;
 }
 - (void)dealloc {
-    [_tableView release];
+    [self.tableView release];
     [lableArray release];
     [baseInfoArray release];
     [otherInfoArray release];
@@ -580,6 +600,7 @@
     [_pickView release];
     [_pickParentView release];
     [ageArray release];
+    [_delegate release];
     [super dealloc];
 }
 -(void)showQrCodeImage{
@@ -588,6 +609,6 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self initLocalInfo];
-    [_tableView reloadData];
+    [self.tableView reloadData];
 }
 @end

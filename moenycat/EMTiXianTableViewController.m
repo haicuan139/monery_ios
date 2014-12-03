@@ -27,14 +27,12 @@
 {
     [super viewDidLoad];
     [self setTitle:@"我要提现"];
-    _tableView.dataSource = self;
-    _tableView.delegate = self;
     _delegateClass = [[EMDelegateClass alloc]init];
     _delegateClass.rootView = self.view;
     _delegateClass.delegate = self;
     _tixianArray = [[NSMutableArray alloc]init];
     [_delegateClass EMDelegateInitTixianList];
-    [_tableView setBackgroundColor:[UIColor whiteColor]];
+    [self.tableView setBackgroundColor:[UIColor whiteColor]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -48,7 +46,7 @@
         NSDictionary *dic = [tixianList objectAtIndex:i];
         [_tixianArray addObject:dic];
     }
-    [_tableView reloadData];
+    [self.tableView reloadData];
 }
 -(void)initBaseLeftItem{
 }
@@ -67,7 +65,7 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [_tableView deselectRowAtIndexPath:indexPath animated:NO];
+    [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
     [self onItemClickNSIndexPath:indexPath];
     
 }
@@ -78,7 +76,7 @@
         if ((balance / 100) < 1) {
             [FVCustomAlertView showDefaultWarningAlertOnView:self.view withTitle:@"余额不足!"];
         } else {
-            EMAppDelegate *dele = [[UIApplication sharedApplication]delegate];
+            EMAppDelegate *dele = (EMAppDelegate *)[[UIApplication sharedApplication]delegate];
             NSInteger  section = [indexPath section];
             NSDictionary *dic = [_tixianArray objectAtIndex:section];
             NSInteger num = [[dic objectForKey:@"pnum"] integerValue];
@@ -92,20 +90,13 @@
             [self pushViewControllerWithStorboardName:@"tixian_input" sid:@"tixian_input" hiddenTabBar:YES];
         }
      } else {
-         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"绑定手机号码后才能提现哦!" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"绑定", nil];
-         [alert showAlertViewWithCompleteBlock:^(NSInteger buttonIndex) {
-             if (buttonIndex == 1) {
-                 [self pushViewControllerWithStorboardName:@"bind_input" sid:@"bind" hiddenTabBar:YES];
-                 
-             }
-         }];
-
+         [self showBindDialog];
      }
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSInteger  section = [indexPath section];
         static NSString *CellIdentifier = @"EMTixianCell";
-    EMTixianCell *cell = (EMTixianCell *)[_tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    EMTixianCell *cell = (EMTixianCell *)[self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         NSArray *marray = [[NSBundle mainBundle] loadNibNamed:@"EMTixianCell" owner:self options:nil];
         cell = [marray objectAtIndex:0];
@@ -120,8 +111,12 @@
     NSDictionary *dic = [_tixianArray objectAtIndex:section];
     NSString *title = [dic objectForKey:@"pname"];
     NSString *desc = [dic objectForKey:@"pdesc"];
-    cell.descriptionLable.text = desc;
+    NSInteger num = [[dic objectForKey:@"pnum"] integerValue];
+    NSString *numStr = [NSString stringWithFormat:@"(剩:%ld份)",(long)num];
+    cell.descriptionLable.text = [desc stringByAppendingString:numStr];
     cell.titleLable.text = title;
+//    cell.numLable.text = numStr;
+//    [cell.numLable setTextColor:[UIColor whiteColor]];
     if (section == 0) {
         cell.backgroundColor = color;
     } else {
@@ -132,7 +127,7 @@
     return cell;
 }
 - (void)dealloc {
-    [_tableView release];
+    [self.tableView release];
     [_tixianArray release];
     [_delegateClass release];
     [super dealloc];

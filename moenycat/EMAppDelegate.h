@@ -13,7 +13,9 @@
 #import <AudioToolbox/AudioToolbox.h> 
 #import "MPNotificationView.h"
 #import "SBJson/SBJson.h"
-@interface EMAppDelegate : UIResponder <UIApplicationDelegate >
+#import "WXApi.h"
+#import "FVCustomAlertView.h"
+@interface EMAppDelegate : UIResponder <UIApplicationDelegate,WXApiDelegate , UMSocialUIDelegate>
 
 @property (strong, nonatomic) UIWindow      *window;
 @property (strong, nonatomic) NSDictionary  *adInfoDicToH5;
@@ -22,4 +24,5 @@
 @property (strong, nonatomic) NSString *editViewDefaultValue;
 @property (strong, nonatomic) NSString *tixianId;
 @property (strong,  nonatomic) NSDictionary *duihuanDic; //需要兑换的商品
+-(void)openShare:(NSString *)url title:(NSString *)title content:(NSString *)content urlLogo:(NSString*)urlLogo;
 @end

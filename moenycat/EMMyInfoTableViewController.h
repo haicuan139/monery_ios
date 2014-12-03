@@ -28,9 +28,9 @@
     BOOL isPickerShow;
 }
 
-@property (retain, nonatomic) IBOutlet UITableView *tableView;
 @property (retain, nonatomic) UIPickerView *pickView;
 @property (retain, nonatomic) UIView *pickParentView;
+@property (retain, nonatomic) EMDelegateClass *delegate;
 -(void)initHeaderSelectView;
 -(void)initAgeData;
 -(BOOL)isPhotoLibraryAvailable;

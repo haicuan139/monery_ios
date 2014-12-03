@@ -18,9 +18,10 @@
     [super viewDidLoad];
     [self setTitle:@"兑换申请"];
     //加载上次的地址
-    NSString *addr = [self getStringValueForKey:CONFIG_KEY_DUIHUAN_ADDR];
-    NSString *name = [self getStringValueForKey:CONFIG_KEY_DUIHUAN_NAME];
-    NSString *phone = [self getStringValueForKey:CONFIG_KEY_DUIHUAN_PHONE];
+    self.ud = [NSUserDefaults standardUserDefaults];
+    NSString *addr  =   [_ud stringForKey:CONFIG_KEY_DUIHUAN_ADDR];
+    NSString *name  =   [_ud stringForKey:CONFIG_KEY_DUIHUAN_NAME];
+    NSString *phone =   [_ud stringForKey:CONFIG_KEY_DUIHUAN_PHONE];
     [_duihuanName setText:name];
     [_duihuanPhone setText:phone];
     [_duihanAddress setText:addr];
@@ -29,7 +30,7 @@
     [_duihuanCommit.layer setCornerRadius:4.0];
     [_duihuanName becomeFirstResponder];
     _duihuanCountControllerButton.minimumValue = 1;
-    EMAppDelegate *app = [[UIApplication sharedApplication] delegate];
+    EMAppDelegate *app = (EMAppDelegate *)[[UIApplication sharedApplication] delegate];
     NSDictionary *dic = app.duihuanDic;
         NSInteger maxValue = [[dic objectForKey:@"p_max_dh_num"] integerValue];
 
@@ -42,7 +43,7 @@
     _delegateClass.delegate = self;
 }
 - (void)valueChanged:(UIStepper *)Stepper{
-    NSInteger balance = [self getIntegerValueForKey:CONFIG_KEY_LOCAL_BALANCE];
+    NSInteger balance = [_ud integerForKey:CONFIG_KEY_LOCAL_BALANCE];
     NSInteger price = Stepper.tag;
     NSLog(@"点击了!%f",Stepper.value);
     if ((Stepper.value * price) < balance) {
@@ -67,11 +68,11 @@
 
     [_duihuanName release];
     [_duihuanPhone release];
+    [_ud release];
     [_duihanAddress release];
     [_duihuanCount release];
     [_duihuanCountControllerButton release];
     [_duihuanCommit release];
-    [_duihuanQQ release];
     [super dealloc];
 }
 - (IBAction)postDuihuan:(id)sender {
@@ -81,12 +82,11 @@
     NSString *addr = _duihanAddress.text;
     NSString *phone = _duihuanPhone.text;
     NSString *name = _duihuanName.text;
-    NSString *qq = _duihuanQQ.text;
-    [self setStringValueForKey:CONFIG_KEY_DUIHUAN_ADDR val:addr];
-    [self setStringValueForKey:CONFIG_KEY_DUIHUAN_PHONE val:phone];
-    [self setStringValueForKey:CONFIG_KEY_DUIHUAN_NAME val:name];
-    [self setStringValueForKey:CONFIG_KEY_DUIHUAN_COUNT val:_duihuanCount.text];
-    [self setStringValueForKey:CONFIG_KEY_DUIHUAN_QQ val:qq];
+
+    [_ud setObject:addr forKey:CONFIG_KEY_DUIHUAN_ADDR];
+    [_ud setObject:phone forKey:CONFIG_KEY_DUIHUAN_PHONE];
+    [_ud setObject:name forKey:CONFIG_KEY_DUIHUAN_NAME];
+    [_ud setObject:_duihuanCount.text forKey:CONFIG_KEY_DUIHUAN_COUNT];
     //申请兑换
     [_delegateClass EMDelegatePostDuiHuanInfo];
 }

@@ -9,8 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "EMADInfoCell.h"
 #import "EMBaseViewController.h"
-@interface EMMyAdListTableViewController : EMBaseViewController <UITableViewDataSource,UITableViewDelegate , EMDelegate>
-@property (retain, nonatomic) IBOutlet UITableView *tableView;
+@interface EMMyAdListTableViewController : EMBaseViewController < EMDelegate>
 @property (retain, nonatomic) EMDelegateClass *delegateClass;
 @property (retain, nonatomic) NSMutableArray *adlistArray;
 @end

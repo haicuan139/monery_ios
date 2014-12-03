@@ -10,7 +10,7 @@
 #import "EMBaseViewController.h"
 #import "FVCustomAlertView/FVCustomAlertView.h"
 #import "EMAppDelegate.h"
-@interface EMADHTML5ViewController : EMBaseViewController <UIWebViewDelegate>{
+@interface EMADHTML5ViewController : UIViewController <UIWebViewDelegate>{
     int timerCount;
 }
 @property (retain, nonatomic) IBOutlet UIWebView *webview;

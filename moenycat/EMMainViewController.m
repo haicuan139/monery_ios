@@ -25,7 +25,7 @@
     [super viewDidLoad];
     
     
-    
+    self.view.backgroundColor = [UIColor whiteColor];
     NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
     float localVersion = [ud floatForKey:CONFIG_KEY_VERSIONCODE];
     if ([self getAppVersion] > localVersion) {

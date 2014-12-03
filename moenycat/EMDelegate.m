@@ -45,9 +45,9 @@
 }
 -(void)dealloc{
     [super dealloc];
-//    [_ud release];
-//    [_rootView release];
-//    [_delegate release];
+    [_ud release];
+    [_rootView release];
+    [_delegate release];
 }
 - (id) init
 {
@@ -453,6 +453,7 @@
                 [FVCustomAlertView hideAlertFromView:_rootView fading:NO];
                 [FVCustomAlertView showDefaultDoneAlertOnView:_rootView withTitle:@"保存成功"];
                 [_ud setBool:YES forKey:CONFIG_KEY_SAVE_MYINFO];//是否保存过个人信息
+                
             }
             double delayInSeconds = 1;
             dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
@@ -504,7 +505,7 @@
             [_delegate onInitMinXiListLoadDone:val];
         }
         if (_rootView) {
-            [FVCustomAlertView hideAlertFromView:_rootView fading:YES];
+            [FVCustomAlertView hideAlertFromView:_rootView fading:NO];
         }
     }];
     [request setFailedBlock:^{
@@ -902,7 +903,7 @@
             NSLog(@"EMDelegateInitTixianList 异常");
         }
         if (_rootView) {
-            [FVCustomAlertView hideAlertFromView:_rootView fading:YES];
+            [FVCustomAlertView hideAlertFromView:_rootView fading:NO];
         }
         if ([_delegate respondsToSelector:@selector(onInitDuiHuanHistoryForServer:)]) {
             [_delegate onInitDuiHuanHistoryForServer:val];

@@ -36,23 +36,25 @@
     NSString *content   = [_adInof objectForKey:@"adContent"];
     NSString *urlLogo   = [_adInof objectForKey:@"adIcon"];
     NSString *url       = [_adInof objectForKey:@"adUrl"];
-    NSString *deviceId  = [self getStringValueForKey:CONFIG_KEY_DEVICEID];
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    NSString *deviceId  = [ud stringForKey:CONFIG_KEY_DEVICEID];
     NSString *adId      = [_adInof objectForKey:@"adId"];
     NSString *paramsUrl    = [[NSString alloc]initWithFormat:@"index.html?p1=%@&p2=%@",deviceId,adId];
     NSMutableString *shareUrl = [[NSMutableString alloc]initWithString:url];
     [shareUrl replaceCharactersInRange:[shareUrl rangeOfString:@"set.html"] withString:paramsUrl];
-    [self openShare:shareUrl title:title content:content urlLogo:urlLogo];
+    EMBaseViewController *eb = [[EMBaseViewController alloc]init];
+    [eb openShare:shareUrl title:title content:content urlLogo:urlLogo];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
-    EMAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+    EMAppDelegate *delegate = (EMAppDelegate *)[[UIApplication sharedApplication] delegate];
     _adInof = delegate.adInfoDicToH5;
     [self setTitle:@"广告详细"];
     _webview.delegate = self;
-    _webview.scalesPageToFit = YES;
+//    _webview.scalesPageToFit = YES;
     NSString *url = [_adInof objectForKey:@"adUrl"];
     NSURLRequest *request =[NSURLRequest requestWithURL:[NSURL URLWithString:url]];
     [_webview loadRequest:request];
