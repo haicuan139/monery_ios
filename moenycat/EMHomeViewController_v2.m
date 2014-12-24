@@ -139,14 +139,26 @@
 {
         // 取消选中状态
         [tableView deselectRowAtIndexPath:indexPath animated:NO];
+        //如果没开始或者活动结束
+    if (indexPath.row == 0) {
+        [self pushViewControllerWithStorboardName:@"myinfo" sid:@"EMMyInfoTableViewController" hiddenTabBar:YES];
+        
+        return;
+    }
+        NSDictionary *dic = [_adListArray objectAtIndex:indexPath.row - 1];
+        NSLog(@"%@",dic);
+        NSString *adurl = [dic objectForKey:@"adUrl"];
+        NSInteger balanceCount = [[dic objectForKey:@"adAwardBalance"]integerValue];
+    if ((NSNull *)adurl != [NSNull null] && balanceCount != 0) {
         [self onItemClick:indexPath.row];
+    }
 
 }
 -(void)onItemClick:(NSUInteger)itemIndex{
     
 
     if (itemIndex != 0) {        
-        EMAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+        EMAppDelegate *delegate = (EMAppDelegate *)[[UIApplication sharedApplication] delegate];
         delegate.adInfoDicToH5  =  [_adListArray objectAtIndex:itemIndex - 1];
         [self pushViewControllerWithStorboardName:@"adhtml5" sid:@"adhtml5" hiddenTabBar:YES];
     } else {
@@ -177,6 +189,7 @@
 
     return cell_sutoscroll;
     } else {
+        
         //加载广告Cell
         static NSString *CellIdentifier = @"EMADInfoCellID";
         EMADInfoCell *cell = (EMADInfoCell *)[self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -185,7 +198,6 @@
             cell = [marray objectAtIndex:0];
             [cell setSelectionStyle:UITableViewCellSelectionStyleGray];
         }
-        
         UIColor* color=[EMColorHex getColorWithHexString:@"#FDB2B2"];//通过RGB来定义颜色
         cell.selectedBackgroundView=[[[UIView alloc]initWithFrame:cell.frame]autorelease];
         cell.selectedBackgroundView.backgroundColor=color;
@@ -195,10 +207,15 @@
             NSDictionary *dic = [_adListArray objectAtIndex:position - 1];
 
             NSURL *imageUrl = [NSURL URLWithString:[dic objectForKey:@"adIcon"]];
+            NSInteger balanceCount = [[dic objectForKey:@"adAwardBalance"] integerValue];
+            if (balanceCount == 0) {
+                //显示抢完图片
+                [cell.adOverImage setHidden:NO];
+            } else {
+                [cell.adOverImage setHidden:YES];
+            }
             [cell.adIconImageView setImageWithURL:imageUrl placeholderImage:[UIImage imageNamed:@"logo.png"]];
             NSString *title = [dic objectForKey:@"adTitle"];
-//            NSString *balance = [dic objectForKey:@"adAwardBalance"];
-//            NSString *balanceText = [[NSString alloc] initWithFormat:@"剩余:%@喵币",balance];
             NSString *content = [dic objectForKey:@"adContent"];
             NSString *ad_des = [dic objectForKey:@"ad_desc"];
             [cell.adContentLable setText:content];
@@ -264,7 +281,7 @@
         return _viewsArray.count;
     };
     _autoScrollView.TapActionBlock = ^(NSInteger pageIndex){
-        EMAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+        EMAppDelegate *delegate = (EMAppDelegate *)[[UIApplication sharedApplication] delegate];
         delegate.adInfoDicToH5  =  [_adLoopListArray objectAtIndex:pageIndex ];
         [self pushViewControllerWithStorboardName:@"adhtml5" sid:@"adhtml5" hiddenTabBar:YES];
     };
@@ -282,8 +299,11 @@
         [_adListArray removeAllObjects];
         //添加到数组
         for (int i = 0; i < adList.count; i++) {
-
-            [_adListArray addObject:[adList objectAtIndex:i]];
+            //过滤广告
+           NSInteger adSource = [[[adList objectAtIndex:i] objectForKey:@"adSource"] integerValue];
+            if (adSource != 1) {
+                [_adListArray addObject:[adList objectAtIndex:i]];
+            }
         }
         //加载完成reload
         [self.tableView reloadData];

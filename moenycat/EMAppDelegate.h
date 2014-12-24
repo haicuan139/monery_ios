@@ -25,4 +25,5 @@
 @property (strong, nonatomic) NSString *tixianId;
 @property (strong,  nonatomic) NSDictionary *duihuanDic; //需要兑换的商品
 -(void)openShare:(NSString *)url title:(NSString *)title content:(NSString *)content urlLogo:(NSString*)urlLogo;
+
 @end

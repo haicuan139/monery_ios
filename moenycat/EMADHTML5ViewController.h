@@ -10,11 +10,15 @@
 #import "EMBaseViewController.h"
 #import "FVCustomAlertView/FVCustomAlertView.h"
 #import "EMAppDelegate.h"
-@interface EMADHTML5ViewController : UIViewController <UIWebViewDelegate>{
+#import "TGJSBridge.h"
+#import "LocalConfigKey.h"
+@interface EMADHTML5ViewController : UIViewController <TGJSBridgeDelegate>{
     int timerCount;
 }
-@property (retain, nonatomic) IBOutlet UIWebView *webview;
+@property (retain, nonatomic) UIWebView *webview;
 @property (retain, nonatomic) NSDictionary *adInof;
+@property (retain, nonatomic) TGJSBridge *jsBridge;
 -(void)onRightItemClick;
-
+-(void)postValueToJs:(NSString *)key value:(NSString *)value method:(NSString *)method;
+-(void)initWebView;
 @end

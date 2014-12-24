@@ -187,4 +187,6 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo
                                 shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToTencent,UMShareToQzone,UMShareToSms,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToQQ,UMShareToEmail,nil]
                                        delegate:self];
 }
+
+
 @end

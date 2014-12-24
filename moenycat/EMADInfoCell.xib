@@ -42,18 +42,23 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BY8-h3-a01">
                         <rect key="frame" x="11" y="12" width="55" height="55"/>
                     </imageView>
+                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ad_over_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="bzH-Gs-YaK">
+                        <rect key="frame" x="240" y="12" width="70" height="50"/>
+                    </imageView>
                 </subviews>
             </tableViewCellContentView>
             <connections>
                 <outlet property="adBalanceLable" destination="VRZ-aT-sB4" id="gIV-fa-lxc"/>
                 <outlet property="adContentLable" destination="0vS-Km-vrw" id="a5o-9i-gZh"/>
                 <outlet property="adIconImageView" destination="BY8-h3-a01" id="Aub-ZF-5uV"/>
+                <outlet property="adOverImage" destination="bzH-Gs-YaK" id="naa-2W-2eA"/>
                 <outlet property="adTitleLable" destination="SeA-ba-c7g" id="UmD-JR-2Dc"/>
             </connections>
             <point key="canvasLocation" x="139" y="148"/>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="ad_over_icon.png" width="240" height="166"/>
         <image name="rmbicon_1.png" width="30" height="30"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

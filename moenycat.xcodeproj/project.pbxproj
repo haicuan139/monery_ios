@@ -122,6 +122,12 @@
 		225614E219B97D9F005E3039 /* EMMoreSoundOffCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 225614E119B97D9F005E3039 /* EMMoreSoundOffCell.m */; };
 		225614E419B97DC0005E3039 /* EMMoreSoundOffCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 225614E319B97DC0005E3039 /* EMMoreSoundOffCell.xib */; };
 		225614E619BC250A005E3039 /* EMMoreItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 225614E519BC250A005E3039 /* EMMoreItemCell.xib */; };
+		225FC0F91A49519C0049118E /* ExampleApp.html in Resources */ = {isa = PBXBuildFile; fileRef = 225FC0F81A49519C0049118E /* ExampleApp.html */; };
+		225FC0FE1A495A830049118E /* TGJSBridge.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 225FC0FB1A495A830049118E /* TGJSBridge.bundle */; };
+		225FC0FF1A495A830049118E /* TGJSBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 225FC0FD1A495A830049118E /* TGJSBridge.m */; };
+		225FC1011A495AA70049118E /* test.html in Resources */ = {isa = PBXBuildFile; fileRef = 225FC1001A495AA70049118E /* test.html */; };
+		225FC1041A49747A0049118E /* EMAdInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 225FC1031A49747A0049118E /* EMAdInfoViewController.m */; };
+		225FC1061A49748F0049118E /* adinfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 225FC1051A49748F0049118E /* adinfo.storyboard */; };
 		226914F819E66D6100386888 /* EMHomeViewController_v2.m in Sources */ = {isa = PBXBuildFile; fileRef = 226914F719E66D6100386888 /* EMHomeViewController_v2.m */; };
 		226914FB19E6762800386888 /* EMHomeAutoScrollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 226914FA19E6762800386888 /* EMHomeAutoScrollCell.m */; };
 		226914FD19E6764900386888 /* EMHomeAutoScrollCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 226914FC19E6764900386888 /* EMHomeAutoScrollCell.xib */; };
@@ -155,6 +161,7 @@
 		227A254619ADB54200AA7C54 /* tab_recommend@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 227A253E19ADB54200AA7C54 /* tab_recommend@2x.png */; };
 		227A254E19ADC46000AA7C54 /* rmb.png in Resources */ = {isa = PBXBuildFile; fileRef = 227A254D19ADC46000AA7C54 /* rmb.png */; };
 		227A255019ADC4CA00AA7C54 /* header_icon_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 227A254F19ADC4CA00AA7C54 /* header_icon_2.png */; };
+		228244DD1A319DAE00FA1FB1 /* ad_over_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 228244DC1A319DAE00FA1FB1 /* ad_over_icon.png */; };
 		228FC2AC19BC4CC600B47BB6 /* EMAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 228FC2AB19BC4CC600B47BB6 /* EMAboutViewController.m */; };
 		228FC2AE19BC4CDC00B47BB6 /* about.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 228FC2AD19BC4CDC00B47BB6 /* about.storyboard */; };
 		228FC2B319BC4EE600B47BB6 /* myinfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 228FC2B219BC4EE600B47BB6 /* myinfo.storyboard */; };
@@ -462,6 +469,14 @@
 		225614E119B97D9F005E3039 /* EMMoreSoundOffCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMMoreSoundOffCell.m; sourceTree = "<group>"; };
 		225614E319B97DC0005E3039 /* EMMoreSoundOffCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EMMoreSoundOffCell.xib; sourceTree = "<group>"; };
 		225614E519BC250A005E3039 /* EMMoreItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EMMoreItemCell.xib; sourceTree = "<group>"; };
+		225FC0F81A49519C0049118E /* ExampleApp.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ExampleApp.html; sourceTree = "<group>"; };
+		225FC0FB1A495A830049118E /* TGJSBridge.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TGJSBridge.bundle; sourceTree = "<group>"; };
+		225FC0FC1A495A830049118E /* TGJSBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGJSBridge.h; sourceTree = "<group>"; };
+		225FC0FD1A495A830049118E /* TGJSBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGJSBridge.m; sourceTree = "<group>"; };
+		225FC1001A495AA70049118E /* test.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = test.html; sourceTree = "<group>"; };
+		225FC1021A49747A0049118E /* EMAdInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMAdInfoViewController.h; sourceTree = "<group>"; };
+		225FC1031A49747A0049118E /* EMAdInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMAdInfoViewController.m; sourceTree = "<group>"; };
+		225FC1051A49748F0049118E /* adinfo.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = adinfo.storyboard; sourceTree = "<group>"; };
 		226914F619E66D6100386888 /* EMHomeViewController_v2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMHomeViewController_v2.h; sourceTree = "<group>"; };
 		226914F719E66D6100386888 /* EMHomeViewController_v2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMHomeViewController_v2.m; sourceTree = "<group>"; };
 		226914F919E6762800386888 /* EMHomeAutoScrollCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMHomeAutoScrollCell.h; sourceTree = "<group>"; };
@@ -515,6 +530,7 @@
 		227A253E19ADB54200AA7C54 /* tab_recommend@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_recommend@2x.png"; sourceTree = "<group>"; };
 		227A254D19ADC46000AA7C54 /* rmb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rmb.png; sourceTree = "<group>"; };
 		227A254F19ADC4CA00AA7C54 /* header_icon_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = header_icon_2.png; sourceTree = "<group>"; };
+		228244DC1A319DAE00FA1FB1 /* ad_over_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ad_over_icon.png; sourceTree = "<group>"; };
 		228FC2AA19BC4CC600B47BB6 /* EMAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMAboutViewController.h; sourceTree = "<group>"; };
 		228FC2AB19BC4CC600B47BB6 /* EMAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMAboutViewController.m; sourceTree = "<group>"; };
 		228FC2AD19BC4CDC00B47BB6 /* about.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = about.storyboard; sourceTree = "<group>"; };
@@ -774,6 +790,8 @@
 				2222A5191A13812C0049F06E /* EMDuihuanHistoryTableViewController.m */,
 				2242D9501A1492F200EA7395 /* EMFeedBackViewController.h */,
 				2242D9511A1492F200EA7395 /* EMFeedBackViewController.m */,
+				225FC1021A49747A0049118E /* EMAdInfoViewController.h */,
+				225FC1031A49747A0049118E /* EMAdInfoViewController.m */,
 			);
 			name = OtherViewController;
 			sourceTree = "<group>";
@@ -1090,8 +1108,19 @@
 				22F5FF951A11E3DB00BA8E4A /* qrcode.storyboard */,
 				2222A5221A1384850049F06E /* duihuan_history.storyboard */,
 				2242D94E1A14916F00EA7395 /* feedback.storyboard */,
+				225FC1051A49748F0049118E /* adinfo.storyboard */,
 			);
 			name = xib;
+			sourceTree = "<group>";
+		};
+		225FC0FA1A495A650049118E /* tgjsbrigde */ = {
+			isa = PBXGroup;
+			children = (
+				225FC0FB1A495A830049118E /* TGJSBridge.bundle */,
+				225FC0FC1A495A830049118E /* TGJSBridge.h */,
+				225FC0FD1A495A830049118E /* TGJSBridge.m */,
+			);
+			name = tgjsbrigde;
 			sourceTree = "<group>";
 		};
 		226FE1041A0B56520005D761 /* KeychainItemWrapper */ = {
@@ -1252,6 +1281,9 @@
 		22E2CE0A19AC62D00085D6BB /* res */ = {
 			isa = PBXGroup;
 			children = (
+				225FC1001A495AA70049118E /* test.html */,
+				225FC0F81A49519C0049118E /* ExampleApp.html */,
+				228244DC1A319DAE00FA1FB1 /* ad_over_icon.png */,
 				2222A5241A139D580049F06E /* error.html */,
 				22F5FF901A11E25A00BA8E4A /* qrcode.png */,
 				22EBF1971A0CE63500BF6740 /* 1.png */,
@@ -1472,6 +1504,7 @@
 		22F88E5D1A10841900AF4CC1 /* webviewcalljs */ = {
 			isa = PBXGroup;
 			children = (
+				225FC0FA1A495A650049118E /* tgjsbrigde */,
 				22F88E5E1A10844400AF4CC1 /* WebViewJavascriptBridge */,
 			);
 			name = webviewcalljs;
@@ -1602,6 +1635,7 @@
 				228FC2B319BC4EE600B47BB6 /* myinfo.storyboard in Resources */,
 				2292938219C1537000CB5F72 /* EMDuiHuanCell.xib in Resources */,
 				22352F731A0A005700C5E408 /* introBg@2x.png in Resources */,
+				225FC1011A495AA70049118E /* test.html in Resources */,
 				2292938419C1889800CB5F72 /* mingxi.storyboard in Resources */,
 				226914FD19E6764900386888 /* EMHomeAutoScrollCell.xib in Resources */,
 				22EBF1D81A0CE63500BF6740 /* 10@2x.png in Resources */,
@@ -1690,6 +1724,7 @@
 				227A254319ADB54200AA7C54 /* tab_my.png in Resources */,
 				22EBF1EC1A0CE63500BF6740 /* 20@2x.png in Resources */,
 				22EBF1EA1A0CE63500BF6740 /* 19@2x.png in Resources */,
+				228244DD1A319DAE00FA1FB1 /* ad_over_icon.png in Resources */,
 				22EBF1DF1A0CE63500BF6740 /* 14.png in Resources */,
 				22F88E621A10844400AF4CC1 /* WebViewJavascriptBridge.js.txt in Resources */,
 				228FC2DD19BC6DFD00B47BB6 /* EMEditCell.xib in Resources */,
@@ -1719,14 +1754,17 @@
 				22713C921A15154100D96952 /* UMSCommentInputControlleriPad.xib in Resources */,
 				22EBF1C71A0CE63500BF6740 /* 2.png in Resources */,
 				22EBF1EB1A0CE63500BF6740 /* 20.png in Resources */,
+				225FC0F91A49519C0049118E /* ExampleApp.html in Resources */,
 				22C93C5D19B5770800D86F5F /* message.png in Resources */,
 				22B8B9F519B601350081686E /* gold_effect.wav in Resources */,
 				2222A5231A1384850049F06E /* duihuan_history.storyboard in Resources */,
 				22F5FFA21A11F91400BA8E4A /* tixian_input.storyboard in Resources */,
+				225FC1061A49748F0049118E /* adinfo.storyboard in Resources */,
 				22F5FF911A11E25A00BA8E4A /* qrcode.png in Resources */,
 				22EBF1E11A0CE63500BF6740 /* 15.png in Resources */,
 				22EBF1D41A0CE63500BF6740 /* 8@2x.png in Resources */,
 				225614CB19B969F2005E3039 /* woyaotixian.png in Resources */,
+				225FC0FE1A495A830049118E /* TGJSBridge.bundle in Resources */,
 				225614C919B969F2005E3039 /* chaozhiduihuan.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1754,6 +1792,7 @@
 				221B58E01A0A268B0070DDA1 /* SBJsonUTF8Stream.m in Sources */,
 				2217FCD619AC5D740054609F /* Reachability.m in Sources */,
 				2217FCA419AC5C5E0054609F /* ASINetworkQueue.m in Sources */,
+				225FC0FF1A495A830049118E /* TGJSBridge.m in Sources */,
 				22E2CE4E19AD9A9E0085D6BB /* EMADInfoCell.m in Sources */,
 				221A061A19E69677005A6826 /* EMRecommendViewController_v2.m in Sources */,
 				22ABE3CA1A023464006035D9 /* UIColor+HSB.m in Sources */,
@@ -1818,6 +1857,7 @@
 				22E2CE3E19AC95670085D6BB /* EMMyInfoTitleView.m in Sources */,
 				2217FCD519AC5D740054609F /* OpenUDID.m in Sources */,
 				22EBF1961A0CE62200BF6740 /* FVCustomAlertView.m in Sources */,
+				225FC1041A49747A0049118E /* EMAdInfoViewController.m in Sources */,
 				228FC2DB19BC6DED00B47BB6 /* EMEditCell.m in Sources */,
 				2242D95E1A14C00000EA7395 /* MPNotificationView.m in Sources */,
 				2217FCD319AC5D740054609F /* GzipCompressor.m in Sources */,

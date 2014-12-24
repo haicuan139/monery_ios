@@ -125,7 +125,7 @@
                         <outlet property="duihuanCountControllerButton" destination="pcD-rN-L0w" id="hwO-fj-tXy"/>
                         <outlet property="duihuanName" destination="Yy8-2U-7Fg" id="hYh-Lx-ccL"/>
                         <outlet property="duihuanPhone" destination="7La-oR-TTM" id="qBg-bs-8QH"/>
-                        <outlet property="duihuanQQ" destination="E7P-PY-gk1" id="ahb-f3-FLf"/>
+                        <outlet property="duihuanQQ" destination="E7P-PY-gk1" id="osz-N3-Alo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>

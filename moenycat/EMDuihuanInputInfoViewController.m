@@ -22,7 +22,9 @@
     NSString *addr  =   [_ud stringForKey:CONFIG_KEY_DUIHUAN_ADDR];
     NSString *name  =   [_ud stringForKey:CONFIG_KEY_DUIHUAN_NAME];
     NSString *phone =   [_ud stringForKey:CONFIG_KEY_DUIHUAN_PHONE];
+    NSString *duihuanQQ = [_ud stringForKey:CONFIG_KEY_DUIHUAN_QQ];
     [_duihuanName setText:name];
+    [_duihuanQQ setText:duihuanQQ];
     [_duihuanPhone setText:phone];
     [_duihanAddress setText:addr];
     [_duihuanCommit setBackgroundColor:[UIColor colorWithHexString:@"#ad1524"]];
@@ -73,6 +75,7 @@
     [_duihuanCount release];
     [_duihuanCountControllerButton release];
     [_duihuanCommit release];
+    [_duihuanQQ release];
     [super dealloc];
 }
 - (IBAction)postDuihuan:(id)sender {
@@ -82,11 +85,22 @@
     NSString *addr = _duihanAddress.text;
     NSString *phone = _duihuanPhone.text;
     NSString *name = _duihuanName.text;
+    NSString *qq = _duihuanQQ.text;
+    if (name.length == 0 || phone.length == 0 || name.length == 0) {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"信息不完整" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        [alert showAlertViewWithCompleteBlock:^(NSInteger buttonIndex) {
+            if (buttonIndex == 1) {
 
+                
+            }
+        }];
+        return;
+    }
     [_ud setObject:addr forKey:CONFIG_KEY_DUIHUAN_ADDR];
     [_ud setObject:phone forKey:CONFIG_KEY_DUIHUAN_PHONE];
     [_ud setObject:name forKey:CONFIG_KEY_DUIHUAN_NAME];
     [_ud setObject:_duihuanCount.text forKey:CONFIG_KEY_DUIHUAN_COUNT];
+    [_ud setObject:qq forKey:CONFIG_KEY_DUIHUAN_QQ];
     //申请兑换
     [_delegateClass EMDelegatePostDuiHuanInfo];
 }

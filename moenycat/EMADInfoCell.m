@@ -36,6 +36,7 @@
     [_adContentLable release];
     [_adIconImageView release];
     [_adBalanceLable release];
+    [_adOverImage release];
     [super dealloc];
 }
 @end

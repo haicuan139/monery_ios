@@ -70,6 +70,7 @@ static const CGFloat kOtherIconsSize = 30;
     UIView *alertView = [[UIView alloc] initWithFrame:CGRectMake(windowRect.size.width/2 - width/2,
                                                                  windowRect.size.height/2 - height,
                                                                  width, height)];
+
     alertView.tag = kAlertViewTag; //set tag to retrieve later
 
     //set background color

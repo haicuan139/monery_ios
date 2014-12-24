@@ -14,7 +14,8 @@
 @end
 
 @implementation EMADHTML5ViewController
-
+@synthesize jsBridge = _jsBridge;
+@synthesize webview = _webView;
 -(void)initBaseLeftItem{
     
 }
@@ -30,8 +31,6 @@
 
 
 -(void)onRightItemClick{
-
-
     NSString *title     = [_adInof objectForKey:@"adTitle"];
     NSString *content   = [_adInof objectForKey:@"adContent"];
     NSString *urlLogo   = [_adInof objectForKey:@"adIcon"];
@@ -41,23 +40,60 @@
     NSString *adId      = [_adInof objectForKey:@"adId"];
     NSString *paramsUrl    = [[NSString alloc]initWithFormat:@"index.html?p1=%@&p2=%@",deviceId,adId];
     NSMutableString *shareUrl = [[NSMutableString alloc]initWithString:url];
-    [shareUrl replaceCharactersInRange:[shareUrl rangeOfString:@"set.html"] withString:paramsUrl];
-    EMBaseViewController *eb = [[EMBaseViewController alloc]init];
-    [eb openShare:shareUrl title:title content:content urlLogo:urlLogo];
+    if ([shareUrl containsString:@"set.html"]) {
+        [shareUrl replaceCharactersInRange:[shareUrl rangeOfString:@"set.html"] withString:paramsUrl];
+        EMBaseViewController *eb = [[EMBaseViewController alloc]init];
+        [eb openShare:shareUrl title:title content:content urlLogo:urlLogo];
+    }
 }
 
+-(void)initWebView{
+    //重新设定view大小
+    self.webview = [[UIWebView alloc]init];
+    self.webview.backgroundColor=[UIColor clearColor];
+    for (UIView *_aView in [self.webview subviews])
+    {
+        if ([_aView isKindOfClass:[UIScrollView class]])
+        {
+            [(UIScrollView *)_aView setShowsVerticalScrollIndicator:NO]; //右侧的滚动条
+            [(UIScrollView *)_aView setShowsHorizontalScrollIndicator:NO]; //右侧的滚动条
+            for (UIView *_inScrollview in _aView.subviews)
+            {
+                if ([_inScrollview isKindOfClass:[UIImageView class]])
+                {
+                    _inScrollview.hidden = YES;  //上下滚动出边界时的黑色的图片
+                }
+            }
+        }
+    }
+    self.webview.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 63);
+    [self.view addSubview:self.webview];
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    [self setTitle:@"广告详细"];
+    [self initWebView];
+    //初始化JS接口
+    self.jsBridge = [TGJSBridge jsBridgeWithDelegate:self];
+    self.webview.delegate = self.jsBridge;
     EMAppDelegate *delegate = (EMAppDelegate *)[[UIApplication sharedApplication] delegate];
     _adInof = delegate.adInfoDicToH5;
-    [self setTitle:@"广告详细"];
-    _webview.delegate = self;
-//    _webview.scalesPageToFit = YES;
     NSString *url = [_adInof objectForKey:@"adUrl"];
-    NSURLRequest *request =[NSURLRequest requestWithURL:[NSURL URLWithString:url]];
-    [_webview loadRequest:request];
+    NSMutableString *ios_url = [[NSMutableString alloc]initWithString:url];
+    if ([ios_url containsString:@"set.html"]) {
+        NSString *ios = @"set_ios.html";
+        [ios_url replaceCharactersInRange:[ios_url rangeOfString:@"set.html"] withString:ios];
+    }
+    NSURLRequest *request =[NSURLRequest requestWithURL:[NSURL URLWithString:ios_url]];
+    [self.webview loadRequest:request];
+    //获取设备ID
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    NSString *deviceid = [ud stringForKey:CONFIG_KEY_DEVICEID];
+    NSString *adId = [_adInof objectForKey:@"adId"];
+    [self postValueToJs:@"deviceid" value:deviceid method:@"JsGetDeviceId"];//传入设备ID
+    [self postValueToJs:@"adid" value:adId method:@"JsGetAdId"];//传入广告ID
+    //添加分享按钮
     UIBarButtonItem *shareItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(onRightItemClick)];
     [shareItem setTintColor:[UIColor whiteColor]];
     self.navigationItem.rightBarButtonItem = shareItem;
@@ -65,20 +101,20 @@
 
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
     //网页加载失败
-    NSLog(@"网页加载失败");
+
     [FVCustomAlertView hideAlertFromView:self.view fading:NO];
     [FVCustomAlertView showDefaultErrorAlertOnView:self.view withTitle:@"加载超时!"];
+    
 }
 -(void)webViewDidFinishLoad:(UIWebView *)webView{
     //网页加载完成
-        NSLog(@"网页加载完成");
-
+    NSLog(@"加载完成");
     [FVCustomAlertView hideAlertFromView:self.view fading:YES];
 
 }
 -(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
     if ( navigationType == UIWebViewNavigationTypeLinkClicked ) {
-        [_webview loadRequest:request];
+        [self.webview loadRequest:request];
         return NO;
     }
     return YES;
@@ -101,8 +137,22 @@
 }
 
 - (void)dealloc {
-    [_webview release];
+
     [_adInof release];
+    [self.webview release];
+    [_jsBridge release];
     [super dealloc];
+}
+
+- (void)jsBridge:(TGJSBridge *)bridge didReceivedNotificationName:(NSString *)name userInfo:(NSDictionary *)userInfo fromWebView:(UIWebView *)webview
+{
+    NSString *val = [userInfo objectForKey:@"key"];
+    if ([val containsString:@"uploadImage"]) {
+        //上传图片
+    }
+    
+}
+-(void)postValueToJs:(NSString *)key value:(NSString *)value method:(NSString *)method{
+        [self.jsBridge postNotificationName:method userInfo:[NSDictionary dictionaryWithObjectsAndKeys:value,key, nil] toWebView:self.webview];
 }
 @end

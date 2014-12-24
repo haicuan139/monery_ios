@@ -117,11 +117,18 @@
         NSInteger price = [[pd objectForKey:@"pprice"] integerValue];
         NSInteger balance = [self getIntegerValueForKey:CONFIG_KEY_LOCAL_BALANCE];
         if (balance >= price) {
-            EMAppDelegate *del = [[UIApplication sharedApplication] delegate];
+            EMAppDelegate *del = (EMAppDelegate *)[[UIApplication sharedApplication] delegate];
             del.duihuanDic = pd;
-            [self pushViewControllerWithStorboardName:@"duihuan_input" sid:@"duihuan_input" hiddenTabBar:YES];
+            //跳转到产品详情界面
+            [self pushViewControllerWithStorboardName:@"adinfo" sid:@"adinfo" hiddenTabBar:NO];
+//            [self pushViewControllerWithStorboardName:@"duihuan_input" sid:@"duihuan_input" hiddenTabBar:YES];
         } else {
-            [FVCustomAlertView showDefaultWarningAlertOnView:self.view withTitle:@"余额不足!"];
+//            [FVCustomAlertView showDefaultWarningAlertOnView:self.view withTitle:@"余额不足!"];
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"余额不足" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            [alert showAlertViewWithCompleteBlock:^(NSInteger buttonIndex) {
+
+            }];
+
         }
 
     } else {

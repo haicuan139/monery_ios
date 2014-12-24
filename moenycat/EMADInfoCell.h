@@ -14,5 +14,6 @@
 @property (retain, nonatomic) IBOutlet UILabel *adContentLable;
 @property (retain, nonatomic) IBOutlet UIImageView *adIconImageView;
 @property (retain, nonatomic) IBOutlet UIButton *adBalanceLable;
+@property (retain, nonatomic) IBOutlet UIImageView *adOverImage;
 
 @end

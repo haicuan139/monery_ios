@@ -234,6 +234,7 @@
     //获得列表广告
     ASIFormDataRequest *request = [self resquestInstanceForUrl:[self requestUrlForKey:SERVER_URL_LOOPLIST]];
     [request setPostValue:@"0" forKey:@"type"];
+        [request setPostValue:@"ios" forKey:@"mobile_type"];
     [request setCompletionBlock :^{
         //响应成功
         NSString *responseString = [request responseString ]; // 对于
@@ -266,6 +267,7 @@
     //获得列表广告
     ASIFormDataRequest *request = [self resquestInstanceForUrl:[self requestUrlForKey:SERVER_URL_GETADLIST]];
     [request setPostValue:@"0" forKey:@"type"];
+    [request setPostValue:@"ios" forKey:@"mobile_type"];
     [request setCompletionBlock :^{
         //响应成功
         NSString *responseString = [request responseString ]; // 对于
@@ -610,7 +612,7 @@
 -(void)EMDelegateTixianCommit{
     ASIFormDataRequest *request = [self resquestInstanceForUrl:[self requestUrlForKey:SERVER_URL_TIXIAN]];
     
-    EMAppDelegate *del = [[UIApplication sharedApplication] delegate];
+    EMAppDelegate *del = (EMAppDelegate *)[[UIApplication sharedApplication] delegate];
 
     NSString *name = [_ud stringForKey:CONFIG_KEY_BANK_NAME];
     NSString *bkn = [_ud stringForKey:CONFIG_KEY_BANK_NUMBER];
@@ -709,7 +711,7 @@
 -(void)EMDelegatePostDuiHuanInfo{
     
     ASIFormDataRequest *request = [self resquestInstanceForUrl:[self requestUrlForKey:SERVER_URL_POST_DUIHUAN_INFO]];
-    EMAppDelegate *del = [[UIApplication sharedApplication] delegate];
+    EMAppDelegate *del = (EMAppDelegate *)[[UIApplication sharedApplication] delegate];
     NSDictionary *dic = del.duihuanDic;
     NSString *pid = [dic objectForKey:@"pid"];
     NSString *addr = [_ud stringForKey:CONFIG_KEY_DUIHUAN_ADDR];

@@ -4,6 +4,7 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>网络不给力</title>
+    <script src="./TGJSBridge.bundle/TGJSBridge.js"></script>
   </head>
   <style>
   	*{padding: 0;margin: 0;}
@@ -25,7 +26,7 @@
   </style>
   <script type="text/javascript">
   	function refresh(){
-  		window.zcmJavaCallBack.JsOnError();
+        jsBridge.postNotification('oc',{key:'refresh:')});
   	}
   </script>
   <body>
